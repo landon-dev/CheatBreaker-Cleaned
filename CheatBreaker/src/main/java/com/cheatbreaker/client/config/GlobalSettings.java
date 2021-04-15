@@ -23,10 +23,10 @@ public class GlobalSettings {
     private List<String[]> networkAddressPair;
     private List<String> dummyDomainList;
     public boolean isDebug = true;
-    public String IllIIIIIIIlIlIllllIIllIII = "https://cheatbreaker.com/crash-report-upload";
-    public String lIIIIllIIlIlIllIIIlIllIlI = "https://cheatbreaker.com/debug-upload";
-    public String IlllIllIlIIIIlIIlIIllIIIl = "https://cheatbreaker.com/api/cosmetic/";
-    public String IlIlllIIIIllIllllIllIIlIl = "https://cheatbreaker.com/api/cosmetic/all";
+    public String CBCrashReportURL = "https://cheatbreaker.com/crash-report-upload";
+    public String CBDebugURL = "https://cheatbreaker.com/debug-upload";
+    public String CBCosmeticURL = "https://cheatbreaker.com/api/cosmetic/";
+    public String CBCosmeticAllURL = "https://cheatbreaker.com/api/cosmetic/all";
     public String mojangStatusURL = "https://status.mojang.com/check";
     public int lIIlIlIllIIlIIIlIIIlllIII = 60;
     public boolean IIIlllIIIllIllIlIIIIIIlII = true;
@@ -73,8 +73,8 @@ public class GlobalSettings {
     public List<ColorPickerColorElement> favouriteColors = new ArrayList<>();
     public List<ColorPickerColorElement> IlIIlIIlIllIIIIllIIllIlIl = new ArrayList<>();
 
-//    public boolean lIIIIlIIllIIlIIlIIIlIIllI() {
-//        return (Boolean)this.IlIIlIIIIlIIIIllllIIlIllI.getValue() == false || (Boolean)this.lIllIllIlIIllIllIlIlIIlIl.getValue() != false;
+//    public boolean playSound() {
+//        return (Boolean)this.IlIIlIIIIlIIIIllllIIlIllI.getValue() == false || (Boolean)this.getStaffModuleEnabled.getValue() != false;
 //    }
 
     public boolean isFavouriteColor(int n) {
@@ -181,7 +181,7 @@ public class GlobalSettings {
         var2.keyBindings = ArrayUtils.addAll(var2.keyBindings, this.pushToTalk, this.openMenu, this.openVoiceMenu, this.dragLook, this.hideNames);
     }
 
-    public Setting IIIIllIlIIIllIlllIlllllIl() {
+    public Setting getCrosshairSettingsLabel() {
         return crosshairSettingsLabel;
     }
 }

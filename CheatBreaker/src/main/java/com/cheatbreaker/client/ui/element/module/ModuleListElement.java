@@ -79,7 +79,7 @@ public class ModuleListElement extends AbstractScrollableElement {
             if (object.isStaffModule()) {
                 object2.add(new KeybindElement(((StaffModule)object).getKeybindSetting(), f));
                 if (object == CheatBreaker.getInstance().moduleManager.xray) {
-                    object2.add(new XRayOptionsElement(CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl(), "Blocks", f));
+                    object2.add(new XRayOptionsElement(CheatBreaker.getInstance().moduleManager.xray.getStaffModuleEnabled(), "Blocks", f));
                 }
             }
             this.moduleElementListMap.put(object, object2);
@@ -114,7 +114,7 @@ public class ModuleListElement extends AbstractScrollableElement {
                 case STRING: {
                     if (!object.getLabel().equalsIgnoreCase("label")) break;
                     this.elementsList.add(new LabelElement(object, f));
-                    if (!CheatBreaker.getInstance().globalSettings.IIIIllIlIIIllIlllIlllllIl().getValue().equals(object.getValue())) break;
+                    if (!CheatBreaker.getInstance().globalSettings.getCrosshairSettingsLabel().getValue().equals(object.getValue())) break;
                     this.elementsList.add(new CrosshairElement(f));
                 }
             }

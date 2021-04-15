@@ -276,10 +276,10 @@ public class AssetsWebSocket extends WebSocketClient {
                 if (!cosmetic.isEquipped() || !(lIllIIIIlIIlIllIIIlIlIlll2 instanceof AbstractClientPlayer)) continue;
                 if (cosmetic.getName().equals("cape")) {
                     ((AbstractClientPlayer)lIllIIIIlIIlIllIIIlIlIlll2).setLocationOfCape(cosmetic.getLocation());
-                    //lIllIIIIlIIlIllIIIlIlIlll2.lIIIIlIIllIIlIIlIIIlIIllI(cosmetic);
+                    //lIllIIIIlIIlIllIIIlIlIlll2.playSound(cosmetic);
                     //continue;
                 }
-                //lIllIIIIlIIlIllIIIlIlIlll2.lIIIIIIIIIlIllIIllIlIIlIl(cosmetic);
+                //lIllIIIIlIIlIllIIIlIlIlll2.getBorderList(cosmetic);
             }
             catch (Exception exception) {
                 exception.printStackTrace();

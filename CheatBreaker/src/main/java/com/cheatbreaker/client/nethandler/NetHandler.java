@@ -71,25 +71,25 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
         for (AbstractModule cBModule : CheatBreaker.getInstance().getModuleManager().staffModules) {
             ((StaffModule)cBModule).disableStaffModule();
         }
-        CheatBreaker.getInstance().getBorderManager().lIIIIlIIllIIlIIlIIIlIIllI();
-        Hologram.IIIllIllIlIlllllllIlIlIII().clear();
-        CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIlIIllIIlIIlIIIlIIllI().clear();
-        this.lIIIIlIIllIIlIIlIIIlIIllI();
+        CheatBreaker.getInstance().getBorderManager().clearBorder();
+        Hologram.getHolograms().clear();
+        CheatBreaker.getInstance().getModuleManager().teammatesModule.getTeammates().clear();
+        this.setupMapWaypoints();
     }
-    public void lIIIIlIIllIIlIIlIIIlIIllI() {
-        CheatBreaker.getInstance().getTitleManager().lIIIIlIIllIIlIIlIIIlIIllI().clear();
-//        IIIlllIllIIllIllIlIIIllII.lIIIIlIIllIIlIIlIIIlIIllI(null);
+    public void setupMapWaypoints() {
+        CheatBreaker.getInstance().getTitleManager().getTitles().clear();
+//        IIIlllIllIIllIllIlIIIllII.playSound(null);
         MiniMapModule.state = ModuleRule.MINIMAP_NOT_ALLOWED;
         VoxelMap voxelMap = CheatBreaker.getInstance().getModuleManager().minmap.getVoxelMap();
         if (Minecraft.getMinecraft().thePlayer == null || voxelMap.getWaypointManager() == null) {
             return;
         }
-        voxelMap.getWaypointManager().getWaypoints().removeIf(lIIllIllIlIllIIIlIlllllIl2 -> lIIllIllIlIllIIIlIlllllIl2.enabled);
-        ((WaypointManager)voxelMap.getWaypointManager()).old2dWayPts.removeIf(lIIllIllIlIllIIIlIlllllIl2 -> lIIllIllIlIllIIIlIlllllIl2.enabled);
+        voxelMap.getWaypointManager().getWaypoints().removeIf(waypoint -> waypoint.enabled);
+        ((WaypointManager)voxelMap.getWaypointManager()).old2dWayPts.removeIf(old2dWaypoint -> old2dWaypoint.enabled);
         if (((WaypointManager)voxelMap.getWaypointManager()).entityWaypointContainer == null) {
             return;
         }
-        ((WaypointManager)voxelMap.getWaypointManager()).entityWaypointContainer.wayPts.removeIf(lIIllIllIlIllIIIlIlllllIl2 -> lIIllIllIlIllIIIlIlllllIl2.enabled);
+        ((WaypointManager)voxelMap.getWaypointManager()).entityWaypointContainer.wayPts.removeIf(waypoint -> waypoint.enabled);
         MapSettingsManager.instance.saveAll();
         voxelMap.getWaypointManager().check2dWaypoints();
     }
@@ -100,10 +100,10 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
                 String string = new String(pluginMessageEvent.getPayload(), Charsets.UTF_8);
                 this.lIIIIIIIIIlIllIIllIlIIlIl = string.contains(CheatBreaker.getInstance().clientString());
                 this.serverHandlesWaypoints = string.contains(CheatBreaker.getInstance().binaryString());
-                PacketBuffer lIlIllllllllIlIIIllIIllII2 = new PacketBuffer(Unpooled.buffer());
-                lIlIllllllllIlIIIllIIllII2.writeBytes(CheatBreaker.getInstance().clientString().getBytes(Charsets.UTF_8));
+                PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
+                packetBuffer.writeBytes(CheatBreaker.getInstance().clientString().getBytes(Charsets.UTF_8));
                 if (Minecraft.getMinecraft().getNetHandler() != null && this.lIIIIIIIIIlIllIIllIlIIlIl) {
-                    Minecraft.getMinecraft().getNetHandler().addToSendQueue(new C17PacketCustomPayload("REGISTER", lIlIllllllllIlIIIllIIllII2));
+                    Minecraft.getMinecraft().getNetHandler().addToSendQueue(new C17PacketCustomPayload("REGISTER", packetBuffer));
                 }
                 this.initialize();
             } else if (pluginMessageEvent.getChannel().equals(CheatBreaker.getInstance().clientString())) {
@@ -127,8 +127,8 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
 //        int x = packetAddWaypoint.getX();
 //        int y = packetAddWaypoint.getY();
 //        int z = packetAddWaypoint.getZ();
-//        lIlIIIIIIlIllIlIllIlIlIlI lIlIIIIIIlIllIlIllIlIlIlI2 = this.lIIIIlIIllIIlIIlIIIlIIllI.IIIIllIIllIIIIllIllIIIlIl().IIIIllIlIIIllIlllIlllllIl.lIIIIlIIllIIlIIlIIIlIIllI();
-//        if (lIlIIIIIIlIllIlIllIlIlIlI2.IIIllIllIlIlllllllIlIlIII().lIIIIlIIllIIlIIlIIIlIIllI().stream().anyMatch(lIIllIllIlIllIIIlIlllllIl2 -> lIIllIllIlIllIIIlIlllllIl2.lIIIIlIIllIIlIIlIIIlIIllI.equals(lIllllIIIlllIIIllIIIIllll2.lIIIIIIIIIlIllIIllIlIIlIl()) && lIIllIllIlIllIIIlIlllllIl2.IIIIllIIllIIIIllIllIIIlIl.equals(lIllllIIIlllIIIllIIIIllll2.IlllIIIlIlllIllIlIIlllIlI()))) {
+//        lIlIIIIIIlIllIlIllIlIlIlI lIlIIIIIIlIllIlIllIlIlIlI2 = this.playSound.getY().getLastMS.playSound();
+//        if (lIlIIIIIIlIllIlIllIlIlIlI2.getHolograms().playSound().stream().anyMatch(lIIllIllIlIllIIIlIlllllIl2 -> lIIllIllIlIllIIIlIlllllIl2.playSound.equals(lIllllIIIlllIIIllIIIIllll2.getBorderList()) && lIIllIllIlIllIIIlIlllllIl2.getY.equals(lIllllIIIlllIIIllIIIIllll2.getWorldBorderColor()))) {
 //            return;
 //        }
 //        Color color = new Color(packetAddWaypoint.getColor());
@@ -140,11 +140,11 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
 //        treeSet.add(0);
 //        treeSet.add(1);
 //        System.out.println("Received waypoint (" + packetAddWaypoint.getName() + ")[x" + x + ",y" + y + ",z" + z + "][r" + f + ",g" + f2 + ",b" + f3 + "]");
-//        Waypoint lIIllIllIlIllIIIlIlllllIl3 = new Waypoint(packetAddWaypoint.getName(), x, z, y, true, f, f2, f3, "", lIlIIIIIIlIllIlIllIlIlIlI2.IIIllIllIlIlllllllIlIlIII().IlllIIIlIlllIllIlIIlllIlI(), treeSet, true, true);
-//        lIIllIllIlIllIIIlIlllllIl3.lIIlIlIllIIlIIIlIIIlllIII = lIllllIIIlllIIIllIIIIllll2.IllIIIIIIIlIlIllllIIllIII();
-//        lIIllIllIlIllIIIlIlllllIl3.IIIIllIIllIIIIllIllIIIlIl = lIllllIIIlllIIIllIIIIllll2.IlllIIIlIlllIllIlIIlllIlI();
-//        lIIllIllIlIllIIIlIlllllIl3.IlIlIIIlllIIIlIlllIlIllIl = true;
-//        lIlIIIIIIlIllIlIllIlIlIlI2.IIIllIllIlIlllllllIlIlIII().lIIIIIIIIIlIllIIllIlIIlIl(lIIllIllIlIllIIIlIlllllIl3);
+//        Waypoint lIIllIllIlIllIIIlIlllllIl3 = new Waypoint(packetAddWaypoint.getName(), x, z, y, true, f, f2, f3, "", lIlIIIIIIlIllIlIllIlIlIlI2.getHolograms().getWorldBorderColor(), treeSet, true, true);
+//        lIIllIllIlIllIIIlIlllllIl3.lIIlIlIllIIlIIIlIIIlllIII = lIllllIIIlllIIIllIIIIllll2.getPlayer();
+//        lIIllIllIlIllIIIlIlllllIl3.getY = lIllllIIIlllIIIllIIIIllll2.getWorldBorderColor();
+//        lIIllIllIlIllIIIlIlllllIl3.getColor = true;
+//        lIlIIIIIIlIllIlIllIlIlIlI2.getHolograms().getBorderList(lIIllIllIlIllIIIlIlllllIl3);
     }
 
     @Override
@@ -171,12 +171,12 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
     @Override
     public void handleNametagsUpdate(PacketUpdateNametags packet) {
 //        if (packet.getPlayersMap() != null) {
-//            IIIlllIllIIllIllIlIIIllII.lIIIIlIIllIIlIIlIIIlIIllI(new HashMap());
+//            IIIlllIllIIllIllIlIIIllII.playSound(new HashMap());
 //            for (Map.Entry<UUID, List<String>> entry : packet.getPlayersMap().entrySet()) {
-//                IIIlllIllIIllIllIlIIIllII.lIllIllIlIIllIllIlIlIIlIl().put(entry.getKey().toString(), entry.getValue());
+//                IIIlllIllIIllIllIlIIIllII.getStaffModuleEnabled().put(entry.getKey().toString(), entry.getValue());
 //            }
 //        } else {
-//            IIIlllIllIIllIllIlIIIllII.lIIIIlIIllIIlIIlIIIlIIllI(null);
+//            IIIlllIllIIllIllIlIIIllII.playSound(null);
 //        }
     }
 
@@ -190,40 +190,40 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
         UUID uUID = packet.getLeader();
         long l = packet.getLastMs();
         if (!((Boolean) CheatBreaker.getInstance().getGlobalSettings().enableTeamView.getValue()) || map == null || map.isEmpty() || map.size() == 1 && map.containsKey(Minecraft.getMinecraft().thePlayer.getUniqueID())) {
-            CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIlIIllIIlIIlIIIlIIllI().clear();
+            CheatBreaker.getInstance().getModuleManager().teammatesModule.getTeammates().clear();
             System.out.println("[CB Teammates] Cleared Map..");
             return;
         }
         int n = 0;
         for (Map.Entry<UUID, Map<String, Double>> entry : map.entrySet()) {
             System.out.println("[CB Teammates] Entry: " + entry.toString());
-            Teammate teammate = CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIlIIllIIlIIlIIIlIIllI((entry.getKey()).toString());
+            Teammate teammate = CheatBreaker.getInstance().getModuleManager().teammatesModule.getTeammateByName((entry.getKey()).toString());
             if (teammate == null) {
                 teammate = new Teammate((entry.getKey()).toString(), uUID != null && uUID.equals(entry.getKey()));
-                CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIlIIllIIlIIlIIIlIIllI().add(teammate);
+                CheatBreaker.getInstance().getModuleManager().teammatesModule.getTeammates().add(teammate);
                 System.out.println("[CB Teammates] New Teammate Added: " + entry.toString());
                 Random random = new Random();
                 if (n < CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIIIIIIlIllIIllIlIIlIl().length) {
-                    teammate.lIIIIlIIllIIlIIlIIIlIIllI(new Color(CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIIIIIIlIllIIllIlIIlIl()[n]));
+                    teammate.setColor(new Color(CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIIIIIIlIllIIllIlIIlIl()[n]));
                 } else {
                     float f = random.nextFloat();
                     float f2 = random.nextFloat();
                     float f3 = random.nextFloat() / 2.0f;
-                    teammate.lIIIIlIIllIIlIIlIIIlIIllI(new Color(f, f2, f3));
+                    teammate.setColor(new Color(f, f2, f3));
                 }
             }
             try {
-                double d = entry.getValue().get("x");
-                double d2 = entry.getValue().get("y") + (double)2;
-                double d3 = entry.getValue().get("z");
-                teammate.lIIIIlIIllIIlIIlIIIlIIllI(d, d2, d3, l);
+                double x = entry.getValue().get("x");
+                double y = entry.getValue().get("y") + (double)2;
+                double z = entry.getValue().get("z");
+                teammate.lIIIIlIIllIIlIIlIIIlIIllI(x, y, z, l);
             }
             catch (Exception exception) {
                 exception.printStackTrace();
             }
             ++n;
         }
-        CheatBreaker.getInstance().getModuleManager().teammatesModule.lIIIIlIIllIIlIIlIIIlIIllI().removeIf(teammate -> !map.containsKey(UUID.fromString(teammate.IlllIIIlIlllIllIlIIlllIlI())));
+        CheatBreaker.getInstance().getModuleManager().teammatesModule.getTeammates().removeIf(teammate -> !map.containsKey(UUID.fromString(teammate.getTeammateName())));
     }
 
     @Override
@@ -238,19 +238,19 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
 
     @Override
     public void handleAddHologram(PacketAddHologram var1) {
-        Hologram iIIlIllIIllllIIIllllIllll = new Hologram(var1.getUuid(), var1.getX(), var1.getY(), var1.getZ());
-        Hologram.IIIllIllIlIlllllllIlIlIII().add(iIIlIllIIllllIIIllllIllll);
-        iIIlIllIIllllIIIllllIllll.lIIIIlIIllIIlIIlIIIlIIllI(var1.getLines().toArray(new String[0]));
+        Hologram hologram = new Hologram(var1.getUuid(), var1.getX(), var1.getY(), var1.getZ());
+        Hologram.getHolograms().add(hologram);
+        hologram.setLines(var1.getLines().toArray(new String[0]));
     }
 
     @Override
     public void handleUpdateHologram(PacketUpdateHologram var1) {
-        Hologram.IIIllIllIlIlllllllIlIlIII().stream().filter(hologram -> hologram.lIIIIIIIIIlIllIIllIlIIlIl().equals(var1.getUuid())).forEach(hologram -> hologram.lIIIIlIIllIIlIIlIIIlIIllI(var1.getLines().toArray(new String[0])));
+        Hologram.getHolograms().stream().filter(hologram -> hologram.getUUID().equals(var1.getUuid())).forEach(hologram -> hologram.setLines(var1.getLines().toArray(new String[0])));
     }
 
     @Override
     public void handleRemoveHologram(PacketRemoveHologram var1) {
-        Hologram.IIIllIllIlIlllllllIlIlIII().removeIf(hologram -> hologram.lIIIIIIIIIlIllIIllIlIIlIl().equals(var1.getUuid()));
+        Hologram.getHolograms().removeIf(hologram -> hologram.getUUID().equals(var1.getUuid()));
     }
 
     @Override
@@ -259,7 +259,7 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
         if (packet.getType().toLowerCase().equals("subtitle")) {
             titleEnum = Title.TitleType.subtitle;
         }
-        CheatBreaker.getInstance().getTitleManager().lIIIIlIIllIIlIIlIIIlIIllI().add(new Title(packet.getMessage(), titleEnum, packet.getScale(), packet.getDisplayTimeMs(), packet.getFadeInTimeMs(), packet.getFadeOutTimeMs()));
+        CheatBreaker.getInstance().getTitleManager().getTitles().add(new Title(packet.getMessage(), titleEnum, packet.getScale(), packet.getDisplayTimeMs(), packet.getFadeInTimeMs(), packet.getFadeOutTimeMs()));
     }
 
     @Override
@@ -405,20 +405,20 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
     }
 
     @Override
-    public void handleUpdateWorld(PacketUpdateWorld var1) {
-        System.out.println("[CB] World Update: " + var1.getWorld());
-        this.world = var1.getWorld();
+    public void handleUpdateWorld(PacketUpdateWorld worUpdatePacket) {
+        System.out.println("[CB] World Update: " + worUpdatePacket.getWorld());
+        this.world = worUpdatePacket.getWorld();
     }
 
     @Override
     public void handleServerUpdate(PacketServerUpdate packet) {
         System.out.println("[CB] Retrieved " + packet.getServer());
-//        CBClient.getInstance().lIIIIlIIllIIlIIlIIIlIIllI(packet.getServer());
+//        CBClient.getInstance().playSound(packet.getServer());
     }
 
     @Override
     public void handleWorldBorder(PacketWorldBorder packet) {
-        CheatBreaker.getInstance().getBorderManager().lIIIIlIIllIIlIIlIIIlIIllI(packet.getId(), packet.getWorld(), packet.getColor(), packet.getMinX(), packet.getMinZ(), packet.getMaxX(), packet.getMaxZ(), packet.isCanShrinkExpand(), packet.isCancelsExit());
+        CheatBreaker.getInstance().getBorderManager().addWordBorder(packet.getId(), packet.getWorld(), packet.getColor(), packet.getMinX(), packet.getMinZ(), packet.getMaxX(), packet.getMaxZ(), packet.isCanShrinkExpand(), packet.isCancelsExit());
     }
 
     @Override

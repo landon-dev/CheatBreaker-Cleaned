@@ -36,6 +36,5 @@ public class EventBus {
         }
     }
 
-    public abstract static class Event {
-    }
+    public abstract static class Event {}
 }

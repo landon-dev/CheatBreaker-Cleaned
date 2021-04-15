@@ -26,20 +26,18 @@ public class DashUtil {
         JavaLayerUtils.setHook(new DashHook());
         ArrayList<Station> arrayList = new ArrayList<>();
         try {
-            JsonObject jsonObject = new JsonParser().parse(DashUtil.dashHelpers(apiURL)).getAsJsonObject();
-            if (jsonObject.has("stations")) {
-                JsonArray jsonArray = jsonObject.getAsJsonArray("stations");
-                Iterator iterator = jsonArray.iterator();
-                while (iterator.hasNext()) {
-                    JsonElement jsonElement = (JsonElement)iterator.next();
+            JsonObject DashApiJson = new JsonParser().parse(DashUtil.dashHelpers(apiURL)).getAsJsonObject();
+            if (DashApiJson.has("stations")) {
+                JsonArray jsonArray = DashApiJson.getAsJsonArray("stations");
+                for (JsonElement jsonElement : jsonArray) {
                     JsonObject jsonObject2 = jsonElement.getAsJsonObject();
-                    String string = jsonObject2.get("name").getAsString();
-                    String string2 = jsonObject2.get("genre").getAsString();
-                    String string3 = jsonObject2.get("square_logo_url").getAsString();
-                    String string4 = jsonObject2.get("current_song_url").getAsString();
-                    String string5 = jsonObject2.get("stream_url").getAsString();
-                    Station illlIllIlIIIIlIIlIIllIIIl = new Station(string, string3, string2, string4, string5);
-                    arrayList.add(illlIllIlIIIIlIIlIIllIIIl);
+                    String name = jsonObject2.get("name").getAsString();
+                    String genre = jsonObject2.get("genre").getAsString();
+                    String squareLogoURL = jsonObject2.get("square_logo_url").getAsString();
+                    String currentSongURL = jsonObject2.get("current_song_url").getAsString();
+                    String streamURL = jsonObject2.get("stream_url").getAsString();
+                    Station station = new Station(name, squareLogoURL, genre, currentSongURL, streamURL);
+                    arrayList.add(station);
                 }
             }
         }
@@ -53,8 +51,7 @@ public class DashUtil {
         try {
             URLConnection uRLConnection = new URL(string).openConnection();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(uRLConnection.getInputStream()));
-            String string2 = bufferedReader.readLine();
-            return string2;
+            return bufferedReader.readLine();
         }
         catch (Exception exception) {
             exception.printStackTrace();

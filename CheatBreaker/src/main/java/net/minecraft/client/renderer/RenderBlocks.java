@@ -287,7 +287,7 @@ public class RenderBlocks
         }
         else
         {
-//            String string = (String)CheatBreaker.getInstance().IlIlIIIlllIIIlIlllIlIllIl().IIlIIllIIIllllIIlllIllIIl.getValue();
+//            String string = (String)CheatBreaker.getInstance().getColor().IIlIIllIIIllllIIlllIllIIl.getValue();
 //            if (!Objects.equals(string, "NO") && (iIlllllllIlllIIllllIIlIll instanceof IIllIllllllIllIllIIlllllI ? string.equals("REGULAR") || string.equals("ALL") : iIlllllllIlllIIllllIIlIll instanceof lIIlllIlIlllIIlIIlIIlIIIl && string.equals("ALL"))) {
 //                return true;
 //            }

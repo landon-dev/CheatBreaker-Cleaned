@@ -196,7 +196,7 @@ public class FriendRequestListElement extends ElementListElement<FriendRequestEl
         return bl2;
     }
 
-//    public FlatButtonElement IlllIllIlIIIIlIIlIIllIIIl() {
+//    public FlatButtonElement getPacketColor() {
 //        return this.addButton;
 //    }
 //

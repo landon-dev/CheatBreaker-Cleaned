@@ -60,7 +60,7 @@ public class ModulesGuiButtonElement
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(new ResourceLocation("client/icons/" + this.displayString), (float)8, (float)(this.x + 6), (float)(this.y + 6));
             GL11.glPopMatrix();
         } else {
-            // IIIllIllIlIlllllllIlIlIII = Fontrenderer
+            // getHolograms = Fontrenderer
             f2 = this.fontRenderer == CheatBreaker.getInstance().playBold22px ? 2.0f : 0.54545456f * 0.9166667f;
             this.fontRenderer.drawCenteredString(this.displayString.toUpperCase(), this.x + this.width / 2, (float)(this.y + this.height / 2 - this.fontRenderer.getHeight()) + f2, 0x6F000000);
         }

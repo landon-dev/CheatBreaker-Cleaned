@@ -55,11 +55,11 @@ public class MessagesElement extends DraggableElement {
         this.closeButton.setElementSize(x + width - 12f, y + 2.0f, 10f, 16);
     }
 
-    public static String lIIIIlIIllIIlIIlIIIlIIllI(byte[] arrby) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
-        SecretKeySpec secretKeySpec = new SecretKeySpec(CheatBreaker.lIIIIIllllIIIIlIlIIIIlIlI, "AES");
+    public static String decryptString(byte[] encBytes) throws InvalidKeyException, NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException {
+        SecretKeySpec secretKeySpec = new SecretKeySpec(CheatBreaker.encKey, "AES");
         Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(2, secretKeySpec);
-        return new String(cipher.doFinal(arrby));
+        cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+        return new String(cipher.doFinal(encBytes));
     }
 
     @Override

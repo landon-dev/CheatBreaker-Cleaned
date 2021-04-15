@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 public class BossBarModule extends AbstractModule {
 
     public BossBarModule() {
-        super("Native Anus");
+        super("Boss Bar");
         this.setDefaultAnchor(CBGuiAnchor.MIDDLE_TOP);
         this.addEvent(GuiDrawEvent.class, this::renderReal);
         this.addEvent(RenderPreviewEvent.class, this::renderPreview);

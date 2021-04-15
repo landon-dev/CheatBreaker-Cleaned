@@ -163,7 +163,7 @@ public class ModulePreviewElement extends AbstractModulesGuiElement {
     }
 
     private void lIIIIIIIIIlIllIIllIlIIlIl() {
-        if (this.module == CheatBreaker.getInstance().moduleManager.llIIlllIIIIlllIllIlIlllIl) {
+        if (this.module == CheatBreaker.getInstance().moduleManager.abstractModule) {
             return;
         }
         for (Setting cBSetting : this.module.getSettingsList()) {

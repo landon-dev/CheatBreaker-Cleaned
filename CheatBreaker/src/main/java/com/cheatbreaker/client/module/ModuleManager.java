@@ -27,7 +27,7 @@ public class ModuleManager {
     public PotionStatusModule potionStatus;
     public BossBarModule bossBar;
     public DirectionHudModule directionHud;
-    public AbstractModule llIIlllIIIIlllIllIlIlllIl;
+    public AbstractModule abstractModule;
     public KeystrokesModule keyStrokes;
     public FPSModule fpsModule;
     public CPSModule cpsModule;

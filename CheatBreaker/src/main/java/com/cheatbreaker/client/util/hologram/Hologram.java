@@ -12,30 +12,30 @@ import java.util.List;
 import java.util.UUID;
 
 public class Hologram {
-    private final UUID lIIIIlIIllIIlIIlIIIlIIllI;
-    private String[] lIIIIIIIIIlIllIIllIlIIlIl;
-    private final double IlllIIIlIlllIllIlIIlllIlI;
-    private final double IIIIllIlIIIllIlllIlllllIl;
-    private final double IIIIllIIllIIIIllIllIIIlIl;
+    private final UUID uuid;
+    private String[] lines;
+    private final double x;
+    private final double y;
+    private final double z;
     private static final List<Hologram> holograms = new ArrayList<>();
 
-    public Hologram(UUID uUID, double d, double d2, double d3) {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = uUID;
-        this.IlllIIIlIlllIllIlIIlllIlI = d;
-        this.IIIIllIlIIIllIlllIlllllIl = d2;
-        this.IIIIllIIllIIIIllIllIIIlIl = d3;
+    public Hologram(UUID uUID, double x, double y, double z) {
+        this.uuid = uUID;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
-    public static void lIIIIlIIllIIlIIlIIIlIIllI() {
+    public static void renderHologram() {
         FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         RenderManager renderManager = RenderManager.instance;
         for (Hologram hologram : holograms) {
-            if (hologram.IlllIIIlIlllIllIlIIlllIlI() == null || hologram.IlllIIIlIlllIllIlIIlllIlI().length <= 0) continue;
-            for (int i = hologram.IlllIIIlIlllIllIlIIlllIlI().length - 1; i >= 0; --i) {
-                String string = hologram.IlllIIIlIlllIllIlIIlllIlI()[hologram.IlllIIIlIlllIllIlIIlllIlI().length - i - 1];
-                float f = (float)(hologram.IIIIllIlIIIllIlllIlllllIl() - (double)((float)RenderManager.renderPosX));
-                float f2 = (float)(hologram.IIIIllIIllIIIIllIllIIIlIl() + 1.0 + (double)((float)i * (0.16049382f * 1.5576924f)) - (double)((float)RenderManager.renderPosY));
-                float f3 = (float)(hologram.IlIlIIIlllIIIlIlllIlIllIl() - (double)((float)RenderManager.renderPosZ));
+            if (hologram.getLines() == null || hologram.getLines().length <= 0) continue;
+            for (int i = hologram.getLines().length - 1; i >= 0; --i) {
+                String string = hologram.getLines()[hologram.getLines().length - i - 1];
+                float f = (float)(hologram.getX() - (double)((float)RenderManager.renderPosX));
+                float f2 = (float)(hologram.getY() + 1.0 + (double)((float)i * (0.16049382f * 1.5576924f)) - (double)((float)RenderManager.renderPosY));
+                float f3 = (float)(hologram.getZ() - (double)((float)RenderManager.renderPosZ));
                 float f4 = 1.7391304f * 0.92f;
                 float f5 = 1.4081633f * 0.011835749f * f4;
                 GL11.glPushMatrix();
@@ -61,7 +61,7 @@ public class Hologram {
                 tessellator.addVertex(n2 + 1, -1 + n, 0.0);
                 tessellator.draw();
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
-                // lIIIIIIIIIlIllIIllIlIIlIl = drawString
+                // getBorderList = drawString
                 fontRenderer.drawString(string, -fontRenderer.getStringWidth(string) / 2, n, 0x20FFFFFF);
                 GL11.glEnable(GL11.GL_DEPTH_TEST);
                 GL11.glDepthMask(true);
@@ -74,31 +74,31 @@ public class Hologram {
         }
     }
 
-    public UUID lIIIIIIIIIlIllIIllIlIIlIl() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI;
+    public UUID getUUID() {
+        return this.uuid;
     }
 
-    public String[] IlllIIIlIlllIllIlIIlllIlI() {
-        return this.lIIIIIIIIIlIllIIllIlIIlIl;
+    public String[] getLines() {
+        return this.lines;
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(String[] arrstring) {
-        this.lIIIIIIIIIlIllIIllIlIIlIl = arrstring;
+    public void setLines(String[] newValue) {
+        this.lines = newValue;
     }
 
-    public double IIIIllIlIIIllIlllIlllllIl() {
-        return this.IlllIIIlIlllIllIlIIlllIlI;
+    public double getX() {
+        return this.x;
     }
 
-    public double IIIIllIIllIIIIllIllIIIlIl() {
-        return this.IIIIllIlIIIllIlllIlllllIl;
+    public double getY() {
+        return this.y;
     }
 
-    public double IlIlIIIlllIIIlIlllIlIllIl() {
-        return this.IIIIllIIllIIIIllIllIIIlIl;
+    public double getZ() {
+        return this.z;
     }
 
-    public static List<Hologram> IIIllIllIlIlllllllIlIlIII() {
+    public static List<Hologram> getHolograms() {
         return holograms;
     }
 }

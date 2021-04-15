@@ -36,7 +36,7 @@ public class XRayModule extends StaffModule {
         return !this.isEnabled() ? bl : this.staffModuleEnabled.contains(n);
     }
 
-    public List<Integer> lIllIllIlIIllIllIlIlIIlIl() {
+    public List<Integer> getStaffModuleEnabled() {
         return this.staffModuleEnabled;
     }
 }

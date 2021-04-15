@@ -657,7 +657,7 @@ public class RenderGlobal implements IWorldAccess
             boolean var26 = this.mc.gameSettings.fancyGraphics;
             this.mc.gameSettings.fancyGraphics = Config.isDroppedItemsFancy();
 
-            Hologram.lIIIIlIIllIIlIIlIIIlIIllI(); //cb
+            Hologram.renderHologram(); //cb
 
             for (var25 = 0; var25 < var24.size(); ++var25)
             {

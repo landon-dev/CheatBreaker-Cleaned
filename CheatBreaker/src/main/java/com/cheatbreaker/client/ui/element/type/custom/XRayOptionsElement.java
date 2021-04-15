@@ -32,7 +32,7 @@ public class XRayOptionsElement
     public void handleDrawElement(int mouseX, int mouseY, float partialTicks) {
         CheatBreaker.getInstance().ubuntuMedium16px.drawString(this.lIIIIlIIllIIlIIlIIIlIIllI.toUpperCase(), this.x + 10, (float)(this.y + 2), -1895825408);
         Minecraft minecraft = Minecraft.getMinecraft();
-        List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl();
+        List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.getStaffModuleEnabled();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glEnable(32826);
         RenderHelper.enableStandardItemLighting();
@@ -66,7 +66,7 @@ public class XRayOptionsElement
     @Override
     public void handleMouseClick(int mouseX, int mouseY, int button) {
         try {
-            List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl();
+            List<Integer> list = CheatBreaker.getInstance().moduleManager.xray.getStaffModuleEnabled();
             int n5 = 0;
             int n6 = 0;
             for (Block iIlllllllIlllIIllllIIlIll : Block.blockRegistry) {
@@ -83,9 +83,9 @@ public class XRayOptionsElement
                 if (bl && button == 0) {
                     int n9 = Item.getIdFromItem(lIIlllIIIlIllllllIlIlIIII2);
                     if (list.contains(n9)) {
-                        CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl().removeIf(n2 -> n2 == n9);
+                        CheatBreaker.getInstance().moduleManager.xray.getStaffModuleEnabled().removeIf(n2 -> n2 == n9);
                     } else {
-                        CheatBreaker.getInstance().moduleManager.xray.lIllIllIlIIllIllIlIlIIlIl().add(n9);
+                        CheatBreaker.getInstance().moduleManager.xray.getStaffModuleEnabled().add(n9);
                     }
                     if (CheatBreaker.getInstance().moduleManager.xray.isEnabled()) {
                         Minecraft.getMinecraft().renderGlobal.loadRenderers();

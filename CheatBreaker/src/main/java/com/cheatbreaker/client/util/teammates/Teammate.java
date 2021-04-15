@@ -2,57 +2,54 @@ package com.cheatbreaker.client.util.teammates;
 
 import net.minecraft.util.Vec3;
 
-import javax.vecmath.Tuple3d;
-import javax.vecmath.Vector3d;
-import javax.vecmath.Vector3f;
 import java.awt.*;
 
 public class Teammate {
-    private String lIIIIlIIllIIlIIlIIIlIIllI;
+    private String teammateName;
     private boolean lIIIIIIIIIlIllIIllIlIIlIl = false;
-    private Vec3 IlllIIIlIlllIllIlIIlllIlI;
+    private Vec3 vector3D;
     private long IIIIllIlIIIllIlllIlllllIl;
-    private Color IIIIllIIllIIIIllIllIIIlIl;
-    private long IlIlIIIlllIIIlIlllIlIllIl;
+    private Color color;
+    private long lastMS;
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(Color color) {
-        this.IIIIllIIllIIIIllIllIIIlIl = color;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public Teammate(String string, boolean bl) {
-        this.lIIIIlIIllIIlIIlIIIlIIllI = string;
+    public Teammate(String teammateName, boolean bl) {
+        this.teammateName = teammateName;
         this.lIIIIIIIIIlIllIIllIlIIlIl = bl;
         this.IIIIllIlIIIllIlllIlllllIl = System.currentTimeMillis();
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(double d, double d2, double d3, long l) {
-        this.IlllIIIlIlllIllIlIIlllIlI = new Vec3(d, d2, d3);
+    public void lIIIIlIIllIIlIIlIIIlIIllI(double x, double y, double z, long lastMS) {
+        this.vector3D = new Vec3(x, y, z);
         this.IIIIllIlIIIllIlllIlllllIl = System.currentTimeMillis();
-        this.IlIlIIIlllIIIlIlllIlIllIl = l;
+        this.lastMS = lastMS;
     }
 
     public Vec3 getVector3D() {
-        return this.IlllIIIlIlllIllIlIIlllIlI;
+        return this.vector3D;
     }
 
     public long lIIIIIIIIIlIllIIllIlIIlIl() {
         return this.IIIIllIlIIIllIlllIlllllIl;
     }
 
-    public String IlllIIIlIlllIllIlIIlllIlI() {
-        return this.lIIIIlIIllIIlIIlIIIlIIllI;
+    public String getTeammateName() {
+        return this.teammateName;
     }
 
-    public long IIIIllIlIIIllIlllIlllllIl() {
-        return this.IlIlIIIlllIIIlIlllIlIllIl;
+    public long getLastMS() {
+        return this.lastMS;
     }
 
     public boolean IIIIllIIllIIIIllIllIIIlIl() {
         return this.lIIIIIIIIIlIllIIllIlIIlIl;
     }
 
-    public Color IlIlIIIlllIIIlIlllIlIllIl() {
-        return this.IIIIllIIllIIIIllIllIIIlIl;
+    public Color getColor() {
+        return this.color;
     }
 }
  

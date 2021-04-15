@@ -70,7 +70,7 @@ public class CosmeticListElement extends AbstractModulesGuiElement {
                 }
                 this.cosmetic.setEquipped(true);
             }
-            //CBClient.getInstance().lIllIllIlIIllIllIlIlIIlIl().updateTick();
+            //CBClient.getInstance().getStaffModuleEnabled().updateTick();
         }
     }
 }

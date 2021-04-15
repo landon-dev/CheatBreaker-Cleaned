@@ -58,10 +58,10 @@ public class TeammatesModule {
             vec3 = new Vec3(vec3.xCoord * (double)-1, vec3.yCoord * (double)-1, vec3.zCoord * (double)-1);
         }
         for (Teammate teammate : this.teammates) {
-            EntityPlayer entityPlayer = this.minecraft.theWorld.getPlayerEntityByName(teammate.IlllIIIlIlllIllIlIIlllIlI());
+            EntityPlayer entityPlayer = this.minecraft.theWorld.getPlayerEntityByName(teammate.getTeammateName());
             if (entityPlayer == null) {
                 double d3;
-                if (System.currentTimeMillis() - teammate.lIIIIIIIIIlIllIIllIlIIlIl() > teammate.IIIIllIlIIIllIlllIlllllIl()) continue;
+                if (System.currentTimeMillis() - teammate.lIIIIIIIIIlIllIIllIlIIlIl() > teammate.getLastMS()) continue;
                 double d4 = teammate.getVector3D().xCoord - (double)f2;
                 double d5 = teammate.getVector3D().yCoord - (double)f3;
                 double d6 = teammate.getVector3D().zCoord - (double)f4;
@@ -83,8 +83,8 @@ public class TeammatesModule {
         }
     }
 
-    private void lIIIIlIIllIIlIIlIIIlIIllI(ScaledResolution scaledResolution, Teammate ilIlllIlIlIIllllIlllIlIII, float f, float f2, float f3, IntBuffer intBuffer, Vec3 lIllIIIIlllllIIlIllIIIIII2, int n) {
-        Vec3 vec3 = new Vec3(f, f2, f3);
+    private void lIIIIlIIllIIlIIlIIIlIIllI(ScaledResolution scaledResolution, Teammate teammate, float x, float y, float z, IntBuffer intBuffer, Vec3 vec31, int distance) {
+        Vec3 vec3 = new Vec3(x, y, z);
         double d = vec3.lengthVector();
         if (vec3.dotProduct(vec3 = vec3.normalize()) <= 2.0714285373687744 * 0.009655172572549829) {
             double d2 = (double)10.2f * 0.15228853561977318;
@@ -103,12 +103,12 @@ public class TeammatesModule {
             double d14 = d7 * d5 * (1.0 - d4) - d6 * d3;
             double d15 = d7 * d6 * (1.0 - d4) + d5 * d3;
             double d16 = d4 + d7 * d7 * (1.0 - d4);
-            f = (float)(d * (d8 * vec3.xCoord + d9 * vec3.yCoord + d10 * vec3.zCoord));
-            f2 = (float)(d * (d11 * vec3.xCoord + d12 * vec3.yCoord + d13 * vec3.zCoord));
-            f3 = (float)(d * (d14 * vec3.xCoord + d15 * vec3.yCoord + d16 * vec3.zCoord));
+            x = (float)(d * (d8 * vec3.xCoord + d9 * vec3.yCoord + d10 * vec3.zCoord));
+            y = (float)(d * (d11 * vec3.xCoord + d12 * vec3.yCoord + d13 * vec3.zCoord));
+            z = (float)(d * (d14 * vec3.xCoord + d15 * vec3.yCoord + d16 * vec3.zCoord));
         }
         FloatBuffer floatBuffer = BufferUtils.createFloatBuffer(3);
-        GLU.gluProject(f, f2, f3, this.modelViewMatrixBuffer, this.projectionMatrixBuffer, intBuffer, floatBuffer);
+        GLU.gluProject(x, y, z, this.modelViewMatrixBuffer, this.projectionMatrixBuffer, intBuffer, floatBuffer);
         float f4 = floatBuffer.get(0) / (float)scaledResolution.getScaleFactor();
         float f5 = floatBuffer.get(1) / (float)scaledResolution.getScaleFactor();
         IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI = null;
@@ -134,26 +134,26 @@ public class TeammatesModule {
         GL11.glTranslatef(f4, (float)scaledResolution.getScaledHeight() - f5, 0.0f);
         if (ilIlIIlllIIIIIlIlIlIIIllI != null) {
             if (((Boolean) CheatBreaker.getInstance().getGlobalSettings().showOffScreenMarker.getValue())) {
-                this.drawOffscreenMarker(ilIlllIlIlIIllllIlllIlIII, ilIlIIlllIIIIIlIlIlIIIllI, 0.0f, 0.0f);
+                this.drawOffscreenMarker(teammate, ilIlIIlllIIIIIlIlIlIIIllI, 0.0f, 0.0f);
             }
         } else {
-            this.drawMarker(ilIlllIlIlIIllllIlllIlIII, n2, (float)n4, (float)n3);
-            if (n > 40 && ((Boolean) CheatBreaker.getInstance().getGlobalSettings().showDistance.getValue())) {
-                this.minecraft.fontRenderer.drawString("(" + n + "m)", 0, 10, -1);
+            this.drawMarker(teammate, n2, (float)n4, (float)n3);
+            if (distance > 40 && ((Boolean) CheatBreaker.getInstance().getGlobalSettings().showDistance.getValue())) {
+                this.minecraft.fontRenderer.drawString("(" + distance + "m)", 0, 10, -1);
             }
         }
         GL11.glPopMatrix();
     }
 
-    private void drawOffscreenMarker(Teammate ilIlllIlIlIIllllIlllIlIII, IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI, float f, float f2) {
+    private void drawOffscreenMarker(Teammate teammate, IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI, float f, float f2) {
         Tessellator tessellator = Tessellator.instance;
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        if (ilIlllIlIlIIllllIlllIlIII.IIIIllIIllIIIIllIllIIIlIl()) {
+        if (teammate.IIIIllIIllIIIIllIllIIIlIl()) {
             GL11.glColor4f(0.0f, 0.0f, 1.0f, 3.137931f * 0.21032967f);
         } else {
-            Color color = ilIlllIlIlIIllllIlllIlIII.IlIlIIIlllIIIlIlllIlIllIl();
+            Color color = teammate.getColor();
             GL11.glColor4f((float)color.getRed() / (float)255, (float)color.getGreen() / (float)255, (float)color.getBlue() / (float)255, 0.61285716f * 1.0769231f);
         }
         float f3 = 8;
@@ -210,7 +210,7 @@ public class TeammatesModule {
         if (teammate.IIIIllIIllIIIIllIllIIIlIl()) {
             GL11.glColor4f(0.0f, 0.0f, 1.0f, 0.83837837f * 0.78723407f);
         } else {
-            Color color = teammate.IlIlIIIlllIIIlIlllIlIllIl();
+            Color color = teammate.getColor();
             GL11.glColor4f((float)color.getRed() / (float)255, (float)color.getGreen() / (float)255, (float)color.getBlue() / (float)255, 1.755102f * 0.37604654f);
         }
         GL11.glPushMatrix();
@@ -237,18 +237,18 @@ public class TeammatesModule {
         GL11.glDisable(3042);
     }
 
-    public List<Teammate> lIIIIlIIllIIlIIlIIIlIIllI() {
+    public List<Teammate> getTeammates() {
         return this.teammates;
     }
 
-    private void lIIIIlIIllIIlIIlIIIlIIllI(DisconnectEvent cBDisconnectEvent) {
+    private void onDisconnect(DisconnectEvent cBDisconnectEvent) {
         this.teammates.clear();
     }
 
-    public Teammate lIIIIlIIllIIlIIlIIIlIIllI(String string) {
-        for (Teammate ilIlllIlIlIIllllIlllIlIII : this.teammates) {
-            if (!ilIlllIlIlIIllllIlllIlIII.IlllIIIlIlllIllIlIIlllIlI().equals(string)) continue;
-            return ilIlllIlIlIIllllIlllIlIII;
+    public Teammate getTeammateByName(String name) {
+        for (Teammate teammate : this.teammates) {
+            if (!teammate.getTeammateName().equals(name)) continue;
+            return teammate;
         }
         return null;
     }
@@ -265,11 +265,11 @@ public class TeammatesModule {
         if (bl && !this.IIIIllIIllIIIIllIllIIIlIl) {
             this.IIIIllIIllIIIIllIllIIIlIl = true;
             CheatBreaker.getInstance().getEventBus().addEvent(GuiDrawEvent.class, this::onDraw);
-            CheatBreaker.getInstance().getEventBus().addEvent(DisconnectEvent.class, this::lIIIIlIIllIIlIIlIIIlIIllI);
+            CheatBreaker.getInstance().getEventBus().addEvent(DisconnectEvent.class, this::onDisconnect);
         } else if (!bl && this.IIIIllIIllIIIIllIllIIIlIl) {
             this.IIIIllIIllIIIIllIllIIIlIl = false;
             CheatBreaker.getInstance().getEventBus().removeEvent(GuiDrawEvent.class, this::onDraw);
-            CheatBreaker.getInstance().getEventBus().removeEvent(DisconnectEvent.class, this::lIIIIlIIllIIlIIlIIIlIIllI);
+            CheatBreaker.getInstance().getEventBus().removeEvent(DisconnectEvent.class, this::onDisconnect);
         }
     }
 }

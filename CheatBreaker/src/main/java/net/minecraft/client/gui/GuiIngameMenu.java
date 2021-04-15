@@ -19,8 +19,8 @@ public class GuiIngameMenu extends GuiScreen
     private int field_146444_f;
     private GuiButton IlllIIIlIlllIllIlIIlllIlI;
     private final ResourceLocation IIIIllIlIIIllIlllIlllllIl = new ResourceLocation("client/logo_white.png");
-    private final ResourceLocation IIIIllIIllIIIIllIllIIIlIl = new ResourceLocation("client/logo_255_outer.png");
-    private final ResourceLocation IlIlIIIlllIIIlIlllIlIllIl = new ResourceLocation("client/logo_108_inner.png");
+    private final ResourceLocation outerLogo = new ResourceLocation("client/logo_255_outer.png");
+    private final ResourceLocation innerLogo = new ResourceLocation("client/logo_108_inner.png");
     private final CosineFade IIIllIllIlIlllllllIlIlIII = new CosineFade(4000L);
     private long IllIIIIIIIlIlIllllIIllIII;
     private boolean lIIIIllIIlIlIllIIIlIllIlI = false;
@@ -68,9 +68,9 @@ public class GuiIngameMenu extends GuiScreen
             GL11.glTranslatef(f, f, f);
             GL11.glRotatef((float)180 * this.IIIllIllIlIlllllllIlIlIII.IllIIIIIIIlIlIllllIIllIII(), 0.0f, 0.0f, 1.0f);
             GL11.glTranslatef(-f, -f, -f);
-            RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.IIIIllIIllIIIIllIllIIIlIl, f, 0.0f, 0.0f);
+            RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.outerLogo, f, 0.0f, 0.0f);
             GL11.glPopMatrix();
-            RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.IlIlIIIlllIIIlIlllIlIllIl, f, (float)d3, (float)d4);
+            RenderUtil.lIIIIIIIIIlIllIIllIlIIlIl(this.innerLogo, f, (float)d3, (float)d4);
         }
         catch (Exception exception) {
             // empty catch block

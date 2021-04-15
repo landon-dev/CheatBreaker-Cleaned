@@ -30,7 +30,7 @@ public class CBModulesGui extends GuiScreen {
     private final ResourceLocation cogIcon = new ResourceLocation("client/icons/cog-64.png");
     private final ResourceLocation deleteIcon = new ResourceLocation("client/icons/delete-64.png");
     private final List<CBModulePosition> positions = new ArrayList<>();
-    private final List<AbstractScrollableElement> IllIIlIIlllllIllIIIlllIII = new ArrayList();
+    private final List<AbstractScrollableElement> scrollableElements = new ArrayList();
     private final List<ModulesGuiButtonElement> buttons = new ArrayList<>();
     private List<AbstractModule> modules;
     private ModulesGuiButtonElement showGuidesButton;
@@ -82,18 +82,18 @@ public class CBModulesGui extends GuiScreen {
         float f = 1.0f / CheatBreaker.getScaleFactor();
         int n = (int)((float)this.width / f);
         int n2 = (int)((float)this.height / f);
-        this.IllIIlIIlllllIllIIIlllIII.clear();
+        this.scrollableElements.clear();
         this.buttons.clear();
         List<AbstractModule> modules = CheatBreaker.getInstance().moduleManager.modules;
         List<AbstractModule> staffModules = CheatBreaker.getInstance().moduleManager.staffModules;
         this.modulesElement = new ModulePreviewContainer(f, n / 2 - 565, n2 / 2 + 14, 370, n2 / 2 - 35);
-        this.IllIIlIIlllllIllIIIlllIII.add(this.modulesElement);
+        this.scrollableElements.add(this.modulesElement);
         this.staffModulesElement = new ModuleListElement(staffModules, f, n / 2 + 195, n2 / 2 + 14, 370, n2 / 2 - 35);
-        this.IllIIlIIlllllIllIIIlllIII.add(this.staffModulesElement);
+        this.scrollableElements.add(this.staffModulesElement);
         this.IIIIllIIllIIIIllIllIIIlIl = new ModuleListElement(modules, f, n / 2 + 195, n2 / 2 + 14, 370, n2 / 2 - 35);
-        this.IllIIlIIlllllIllIIIlllIII.add(this.IIIIllIIllIIIIllIllIIIlIl);
+        this.scrollableElements.add(this.IIIIllIIllIIIIllIllIIIlIl);
         this.profilesElement = new ProfilesListElement(f, n / 2 - 565, n2 / 2 + 14, 370, n2 / 2 - 35);
-        this.IllIIlIIlllllIllIIIlllIII.add(this.profilesElement);
+        this.scrollableElements.add(this.profilesElement);
         this.showGuidesButton = new ModulesGuiButtonElement(null, "eye-64.png", 4, n2 - 32, 28, 28, -12418828, f);
         this.helpButton = new ModulesGuiButtonElement(null, "?", 36, n2 - 32, 28, 28, -12418828, f);
         if (CheatBreaker.getInstance().isUsingStaffModules()) {
@@ -318,9 +318,9 @@ public class CBModulesGui extends GuiScreen {
             GL11.glPushMatrix();
             GL11.glEnable(3089);
             RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(n5 / 2 - 185, n6 / 2 + 15, n5 / 2 + 185, n6 - 20, (float)scaledResolution.getScaleFactor() * scale, n6);
-            for (AbstractScrollableElement lllIllIllIlIllIlIIllllIIl2 : this.IllIIlIIlllllIllIIIlllIII) {
-                if (lllIllIllIlIllIlIIllllIIl2 != this.lIIIIllIIlIlIllIIIlIllIlI && lllIllIllIlIllIlIIllllIIl2 != this.currentScrollableElement) continue;
-                lllIllIllIlIllIlIIllllIIl2.handleDrawElement(mouseX, mouseY, f);
+            for (AbstractScrollableElement scrollableElement : this.scrollableElements) {
+                if (scrollableElement != this.lIIIIllIIlIlIllIIIlIllIlI && scrollableElement != this.currentScrollableElement) continue;
+                scrollableElement.handleDrawElement(mouseX, mouseY, f);
             }
             GL11.glDisable(3089);
             GL11.glPopMatrix();
@@ -991,11 +991,11 @@ public class CBModulesGui extends GuiScreen {
         return null;
     }
 
-    private void IlllIIIlIlllIllIlIIlllIlI(ScaledResolution scaledResolution, int n, int n2) {
+    private void IlllIIIlIlllIllIlIIlllIlI(ScaledResolution scaledResolution, int x, int y) {
         for (CBModulePosition CBModulePosition : this.positions) {
             if (CBModulePosition.module == null || CBModulePosition.module.getGuiAnchor() == null) continue;
-            CBModulePosition.x = (float)n - CBModulePosition.module.getXTranslation();
-            CBModulePosition.y = (float)n2 - CBModulePosition.module.getYTranslation();
+            CBModulePosition.x = (float)x - CBModulePosition.module.getXTranslation();
+            CBModulePosition.y = (float)y - CBModulePosition.module.getYTranslation();
         }
     }
 

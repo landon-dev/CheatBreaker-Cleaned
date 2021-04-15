@@ -16,8 +16,8 @@ public class ArmourStatusDamageComparable
         return this.percent + ", " + this.colorCode;
     }
 
-    public int compare(ArmourStatusDamageComparable illlIlllIlIIIIllIlllIlIII) {
-        return Integer.compare(this.percent, illlIlllIlIIIIllIlllIlIII.percent);
+    public int compare(ArmourStatusDamageComparable armourStatusDamageComparable) {
+        return Integer.compare(this.percent, armourStatusDamageComparable.percent);
     }
 
     public static String getDamageColor(List<ArmourStatusDamageComparable> list, int percent) {

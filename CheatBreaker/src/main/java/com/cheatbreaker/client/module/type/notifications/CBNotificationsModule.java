@@ -32,15 +32,15 @@ public class CBNotificationsModule extends AbstractModule
     private void onTick(final TickEvent cbTickEvent) {
         final Iterator<Notification> iterator = this.notifications.iterator();
         while (iterator.hasNext()) {
-            final Notification illlIlIlllIlIlllIIlllIlIl = iterator.next();
-            illlIlIlllIlIlllIIlllIlIl.lIIIIlIIllIIlIIlIIIlIIllI();
-            if (illlIlIlllIlIlllIIlllIlIl.IIIIllIlIIIllIlllIlllllIl + illlIlIlllIlIlllIIlllIlIl.IlllIIIlIlllIllIlIIlllIlI - System.currentTimeMillis() <= 0L) {
-                int ilIlIIIlllIIIlIlllIlIllIl = illlIlIlllIlIlllIIlllIlIl.IIIIllIIllIIIIllIllIIIlIl;
-                for (final Notification illlIlIlllIlIlllIIlllIlIl2 : this.notifications) {
-                    if (illlIlIlllIlIlllIIlllIlIl2.IIIIllIIllIIIIllIllIIIlIl < illlIlIlllIlIlllIIlllIlIl.IIIIllIIllIIIIllIllIIIlIl) {
-                        illlIlIlllIlIlllIIlllIlIl2.IllIIIIIIIlIlIllllIIllIII = 0;
-                        illlIlIlllIlIlllIIlllIlIl2.IlIlIIIlllIIIlIlllIlIllIl = ilIlIIIlllIIIlIlllIlIllIl;
-                        ilIlIIIlllIIIlIlllIlIllIl = illlIlIlllIlIlllIIlllIlIl2.IIIIllIIllIIIIllIllIIIlIl;
+            final Notification notification = iterator.next();
+            notification.tick();
+            if (notification.startTime + notification.duration - System.currentTimeMillis() <= 0L) {
+                int ilIlIIIlllIIIlIlllIlIllIl = notification.IIIIllIIllIIIIllIllIIIlIl;
+                for (final Notification notif : this.notifications) {
+                    if (notif.IIIIllIIllIIIIllIllIIIlIl < notification.IIIIllIIllIIIIllIllIIIlIl) {
+                        notif.tick = 0;
+                        notif.IlIlIIIlllIIIlIlllIlIllIl = ilIlIIIlllIIIlIlllIlIllIl;
+                        ilIlIIIlllIIIlIlllIlIllIl = notif.IIIIllIIllIIIIllIllIIIlIl;
                     }
                 }
                 iterator.remove();
@@ -48,9 +48,9 @@ public class CBNotificationsModule extends AbstractModule
         }
     }
 
-    private void onDraw(final GuiDrawEvent lIllIllIlIIllIllIlIlIIlIl) {
+    private void onDraw(final GuiDrawEvent event) {
         for (Notification notification : this.notifications) {
-            notification.lIIIIlIIllIIlIIlIIIlIIllI(lIllIllIlIIllIllIlIlIIlIl.getResolution().getScaledWidth());
+            notification.drawNotification(event.getResolution().getScaledWidth());
         }
     }
 
@@ -74,14 +74,14 @@ public class CBNotificationsModule extends AbstractModule
                 break;
             }
         }
-        final Notification illlIlIlllIlIlllIIlllIlIl = new Notification(this, scaledResolution, resolvedType, content, duration);
-        int ilIlIIIlllIIIlIlllIlIllIl = illlIlIlllIlIlllIIlllIlIl.IlIlIIIlllIIIlIlllIlIllIl - illlIlIlllIlIlllIIlllIlIl.IIIllIllIlIlllllllIlIlIII - 2;
+        final Notification notification1 = new Notification(this, scaledResolution, resolvedType, content, duration);
+        int ilIlIIIlllIIIlIlllIlIllIl = notification1.IlIlIIIlllIIIlIlllIlIllIl - notification1.iconSize - 2;
         for (int i = this.notifications.size() - 1; i >= 0; --i) {
             final Notification notification = this.notifications.get(i);
-            notification.IllIIIIIIIlIlIllllIIllIII = 0;
+            notification.tick = 0;
             notification.IlIlIIIlllIIIlIlllIlIllIl = ilIlIIIlllIIIlIlllIlIllIl;
-            ilIlIIIlllIIIlIlllIlIllIl -= 2 + notification.IIIllIllIlIlllllllIlIlIII;
+            ilIlIIIlllIIIlIlllIlIllIl -= 2 + notification.iconSize;
         }
-        this.notifications.add(illlIlIlllIlIlllIIlllIlIl);
+        this.notifications.add(notification1);
     }
 }

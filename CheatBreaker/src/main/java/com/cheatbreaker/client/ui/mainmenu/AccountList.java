@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class AccountList extends AbstractElement {
-    private ResourceLocation IIIllIllIlIlllllllIlIlIII;
+    private ResourceLocation userHeadLocation;
     private String IllIIIIIIIlIlIllllIIllIII;
     private final ColorFade lIIIIllIIlIlIllIIIlIllIlI;
     private final ColorFade IlllIllIlIIIIlIIlIIllIIIl;
@@ -20,15 +20,15 @@ public class AccountList extends AbstractElement {
     private final MinMaxFade llIIlllIIIIlllIllIlIlllIl;
     private float lIIlIlIllIIlIIIlIIIlllIII;
     private boolean IIIlllIIIllIllIlIIIIIIlII;
-    private final MainMenuBase llIlIIIlIIIIlIlllIlIIIIll;
-    private final ScrollableElement IIIlIIllllIIllllllIlIIIll;
+    private final MainMenuBase mainMenu;
+    private final ScrollableElement scrollableAccountList;
     private float lllIIIIIlIllIlIIIllllllII;
 
-    public AccountList(MainMenuBase lIIIlIlIIllIIlllIIIlIIllI2, String string, ResourceLocation resourceLocation) {
-        this.llIlIIIlIIIIlIlllIlIIIIll = lIIIlIlIIllIIlllIIIlIIllI2;
-        this.IIIllIllIlIlllllllIlIlIII = resourceLocation;
+    public AccountList(MainMenuBase mainMenu, String string, ResourceLocation resourceLocation) {
+        this.mainMenu = mainMenu;
+        this.userHeadLocation = resourceLocation;
         this.IllIIIIIIIlIlIllllIIllIII = string;
-        this.IIIlIIllllIIllllllIlIIIll = new ScrollableElement(this);
+        this.scrollableAccountList = new ScrollableElement(this);
         this.lIIIIllIIlIlIllIIIlIllIlI = new ColorFade(0x4FFFFFFF, -1353670564);
         this.IlllIllIlIIIIlIIlIIllIIIl = new ColorFade(444958085, 1063565678);
         this.IlIlllIIIIllIllllIllIIlIl = new ColorFade(444958085, 1062577506);
@@ -45,14 +45,14 @@ public class AccountList extends AbstractElement {
         if (this.lIIlIlIllIIlIIIlIIIlllIII == 0.0f) {
             this.lIIlIlIllIIlIIIlIIIlllIII = height;
         }
-        this.lllIIIIIlIllIlIIIllllllII = Math.min(this.llIlIIIlIIIIlIlllIlIIIIll.getAccounts().size() * 16 + 12, 120);
-        this.IIIlIIllllIIllllllIlIIIll.setElementSize(x + width - (float)5, y + this.lIIlIlIllIIlIIIlIIIlllIII + (float)6, (float)4, this.lllIIIIIlIllIlIIIllllllII - (float)7);
-        this.IIIlIIllllIIllllllIlIIIll.setScrollAmount(this.llIlIIIlIIIIlIlllIlIIIIll.getAccounts().size() * 16 + 4);
+        this.lllIIIIIlIllIlIIIllllllII = Math.min(this.mainMenu.getAccounts().size() * 16 + 12, 120);
+        this.scrollableAccountList.setElementSize(x + width - (float)5, y + this.lIIlIlIllIIlIIIlIIIlllIII + (float)6, (float)4, this.lllIIIIIlIllIlIIIllllllII - (float)7);
+        this.scrollableAccountList.setScrollAmount(this.mainMenu.getAccounts().size() * 16 + 4);
     }
 
     @Override
     public void handleElementMouse() {
-        this.IIIlIIllllIIllllllIlIIIll.handleElementMouse();
+        this.scrollableAccountList.handleElementMouse();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class AccountList extends AbstractElement {
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.x, this.y, this.x + this.width, this.y + this.lIIlIlIllIIlIIIlIIIlllIII, this.lIIIIllIIlIlIllIIIlIllIlI.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB(), this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB(), this.IlIlllIIIIllIllllIllIIlIl.lIIIIIIIIIlIllIIllIlIIlIl(bl2).getRGB());
         float f3 = 6;
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.IIIllIllIlIlllllllIlIlIII, f3, this.x + (float)4, this.y + this.lIIlIlIllIIlIIIlIIIlllIII / 2.0f - f3);
+        RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.userHeadLocation, f3, this.x + (float)4, this.y + this.lIIlIlIllIIlIIIlIIIlllIII / 2.0f - f3);
         CheatBreaker.getInstance().robotoRegular13px.drawString(this.IllIIIIIIIlIlIllllIIllIII, this.x + (float)22, this.y + 1.56f * 2.8846154f, -1342177281);
         float f4 = this.llIIlllIIIIlllIllIlIlllIl.lIIIIlIIllIIlIIlIIIlIIllI(this.isMouseInside(f, f2) && bl);
         if (this.llIIlllIIIIlllIllIlIlllIl.IIIllIllIlIlllllllIlIlIII()) {
@@ -84,23 +84,23 @@ public class AccountList extends AbstractElement {
                     (int)(this.y + this.lIIlIlIllIIlIIIlIIIlllIII),
                     (int)(this.x + this.width),
                     (int)(this.y + this.lIIlIlIllIIlIIIlIIIlllIII + (float)7 + (this.height - this.lIIlIlIllIIlIIIlIIIlllIII - (float)6) * f4),
-                    (float)((int)((float)this.llIlIIIlIIIIlIlllIlIIIIll.getResolution().getScaleFactor() * this.llIlIIIlIIIIlIlllIlIIIIll.getScaleFactor())),
-                    (int)this.llIlIIIlIIIIlIlllIlIIIIll.getScaledHeight()
+                    (float)((int)((float)this.mainMenu.getResolution().getScaleFactor() * this.mainMenu.getScaleFactor())),
+                    (int)this.mainMenu.getScaledHeight()
             );
-            this.IIIlIIllllIIllllllIlIIIll.drawScrollable(f, f2, bl);
+            this.scrollableAccountList.drawScrollable(f, f2, bl);
             int n = 1;
-            for (Account account : this.llIlIIIlIIIIlIlllIlIIIIll.getAccounts()) {
+            for (Account account : this.mainMenu.getAccounts()) {
                 float f8 = this.x;
                 float f9 = this.x + this.width;
                 float f10 = this.y + this.lIIlIlIllIIlIIIlIIIlllIII + (float)(n * 16) - (float)8;
                 float f11 = f10 + (float)16;
-                boolean hovered = f > f8 && f < f9 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() > f10 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() < f11 && bl && !this.IIIlIIllllIIllllllIlIIIll.isMouseInside(f, f2) && !this.IIIlIIllllIIllllllIlIIIll.isDragClick();
+                boolean hovered = f > f8 && f < f9 && f2 - this.scrollableAccountList.IllIIIIIIIlIlIllllIIllIII() > f10 && f2 - this.scrollableAccountList.IllIIIIIIIlIlIllllIIllIII() < f11 && bl && !this.scrollableAccountList.isMouseInside(f, f2) && !this.scrollableAccountList.isDragClick();
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, hovered ? 1.0f : 0.8148148f * 0.8590909f);
                 RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(account.getHeadLocation(), f3, this.x + (float)4, f10 + (float)8 - f3);
                 CheatBreaker.getInstance().robotoRegular13px.drawString(account.getDisplayName(), this.x + (float)22, f10 + (float)4, hovered ? -1 : -1342177281);
                 ++n;
             }
-            this.IIIlIIllllIIllllllIlIIIll.handleElementDraw(f, f2, bl);
+            this.scrollableAccountList.handleElementDraw(f, f2, bl);
             GL11.glDisable(0xc11);
             GL11.glPopMatrix();
         }
@@ -116,18 +116,18 @@ public class AccountList extends AbstractElement {
             return false;
         }
         if (this.llIIlllIIIIlllIllIlIlllIl.IllIllIIIlIIlllIIIllIllII()) {
-            this.IIIlIIllllIIllllllIlIIIll.handleElementMouseClicked(f, f2, n, bl);
+            this.scrollableAccountList.handleElementMouseClicked(f, f2, n, bl);
             int n2 = 1;
-            for (Account illIIIllIlIIlIllIIIllllIl : this.llIlIIIlIIIIlIlllIlIIIIll.getAccounts()) {
+            for (Account illIIIllIlIIlIllIIIllllIl : this.mainMenu.getAccounts()) {
                 boolean bl2;
                 float f3 = this.x;
                 float f4 = this.x + this.width;
                 float f5 = this.y + this.lIIlIlIllIIlIIIlIIIlllIII + (float)(n2 * 16) - (float)8;
                 float f6 = f5 + (float)16;
-                boolean bl3 = bl2 = f > f3 && f < f4 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() > f5 && f2 - this.IIIlIIllllIIllllllIlIIIll.IllIIIIIIIlIlIllllIIllIII() < f6 && bl && !this.IIIlIIllllIIllllllIlIIIll.isMouseInside(f, f2) && !this.IIIlIIllllIIllllllIlIIIll.isDragClick();
+                boolean bl3 = bl2 = f > f3 && f < f4 && f2 - this.scrollableAccountList.IllIIIIIIIlIlIllllIIllIII() > f5 && f2 - this.scrollableAccountList.IllIIIIIIIlIlIllllIIllIII() < f6 && bl && !this.scrollableAccountList.isMouseInside(f, f2) && !this.scrollableAccountList.isDragClick();
                 if (bl2) {
                     Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
-                    this.llIlIIIlIIIIlIlllIlIIIIll.login(illIIIllIlIIlIllIIIllllIl.getDisplayName());
+                    this.mainMenu.login(illIIIllIlIIlIllIIIllllIl.getDisplayName());
                 }
                 ++n2;
             }
@@ -136,7 +136,7 @@ public class AccountList extends AbstractElement {
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(ResourceLocation resourceLocation) {
-        this.IIIllIllIlIlllllllIlIlIII = resourceLocation;
+        this.userHeadLocation = resourceLocation;
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(String string) {

@@ -65,9 +65,9 @@ public class WorldBorderManager {
                     GL11.glDepthMask(false);
                     GL11.glPushMatrix();
                     boolean bl = true;
-                    float f4 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getRed() & 0xFF) / (float)255;
-                    float f5 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getGreen() & 0xFF) / (float)255;
-                    float f6 = (float)(WorldBorder.IlllIIIlIlllIllIlIIlllIlI(iIIlIllIIIlllIIlIIllIlIII).getBlue() & 0xFF) / (float)255;
+                    float f4 = (float)(WorldBorder.getWorldBorderColor(iIIlIllIIIlllIIlIIllIlIII).getRed() & 0xFF) / (float)255;
+                    float f5 = (float)(WorldBorder.getWorldBorderColor(iIIlIllIIIlllIIlIIllIlIII).getGreen() & 0xFF) / (float)255;
+                    float f6 = (float)(WorldBorder.getWorldBorderColor(iIIlIllIIIlllIIlIIllIlIII).getBlue() & 0xFF) / (float)255;
                     GL11.glPolygonOffset(-3, -3);
                     GL11.glEnable(32823);
                     GL11.glAlphaFunc(516, 0.097260274f * 1.028169f);
@@ -152,12 +152,12 @@ public class WorldBorderManager {
         }
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(String string, String string2, int n, double d, double d2, double d3, double d4, boolean bl, boolean bl2) {
-        this.borderList.add(new WorldBorder(this, string, string2, n, d, d2, d3, d4, bl, bl2));
+    public void addWordBorder(String player, String world, int packetColor, double minX, double minZ, double maxX, double maxZ, boolean isCanShrinkExpand, boolean isCancelsExit) {
+        this.borderList.add(new WorldBorder(this, player, world, packetColor, minX, minZ, maxX, maxZ, isCanShrinkExpand, isCancelsExit));
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(String string, double d, double d2, double d3, double d4, int n) {
-        this.borderList.stream().filter(iIIlIllIIIlllIIlIIllIlIII -> Objects.equals(WorldBorder.getPlayer(iIIlIllIIIlllIIlIIllIlIII), string) && WorldBorder.lIIIIIIIIIlIllIIllIlIIlIl(iIIlIllIIIlllIIlIIllIlIII)).findFirst().ifPresent(iIIlIllIIIlllIIlIIllIlIII -> {
+        this.borderList.stream().filter(iIIlIllIIIlllIIlIIllIlIII -> Objects.equals(WorldBorder.getPlayer(iIIlIllIIIlllIIlIIllIlIII), string) && WorldBorder.worldBorderIsCanShrinkExpand(iIIlIllIIIlllIIlIIllIlIII)).findFirst().ifPresent(iIIlIllIIIlllIIlIIllIlIII -> {
             WorldBorder.lIIIIlIIllIIlIIlIIIlIIllI(iIIlIllIIIlllIIlIIllIlIII, new Vector2d(d, d2));
             WorldBorder.lIIIIIIIIIlIllIIllIlIIlIl(iIIlIllIIIlllIIlIIllIlIII, new Vector2d(d3, d4));
             WorldBorder.lIIIIlIIllIIlIIlIIIlIIllI(iIIlIllIIIlllIIlIIllIlIII, 0);
@@ -169,15 +169,15 @@ public class WorldBorderManager {
         this.borderList.removeIf(border -> Objects.equals(WorldBorder.getPlayer(border), string));
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI() {
+    public void clearBorder() {
         this.borderList.clear();
     }
 
-    public List<WorldBorder> lIIIIIIIIIlIllIIllIlIIlIl() {
+    public List<WorldBorder> getBorderList() {
         return this.borderList;
     }
 
-    static CheatBreaker lIIIIlIIllIIlIIlIIIlIIllI(WorldBorderManager cBWorldBorder) {
+    static CheatBreaker getCBInstance(WorldBorderManager cBWorldBorder) {
         return cBWorldBorder.cheatbreaker;
     }
 }

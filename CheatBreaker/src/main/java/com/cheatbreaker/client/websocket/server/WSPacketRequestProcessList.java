@@ -19,12 +19,12 @@ public class WSPacketRequestProcessList
     public void handle(AssetsWebSocket lIIlllIIlllIlIllIIlIIIIll2) {
 //        try {
 //            String string;
-//            Object object = this.lIIIIlIIllIIlIIlIIIlIIllI();
-//            Method method = object.getClass().getMethod(lIlIIIlIIIlllllllllllIlIl.lIIIIlIIllIIlIIlIIIlIIllI(lIIlIlIlIIlIlIIllIllllIII.lIIIIlIIllIIlIIlIIIlIIllI), new Class[0]);
+//            Object object = this.playSound();
+//            Method method = object.getClass().getMethod(lIlIIIlIIIlllllllllllIlIl.playSound(lIIlIlIlIIlIlIIllIllllIII.playSound), new Class[0]);
 //            method.setAccessible(true);
 //            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((InputStream)method.invoke(object, new Object[0])));
 //            while ((string = bufferedReader.readLine()) != null) {
-//                CheatBreaker.getInstance().lIllIllIlIIllIllIlIlIIlIl().lIIIIlIIllIIlIIlIIIlIIllI(new lIIlIlIlIIlIlIIllIllllIII(Collections.singletonList(string)));
+//                CheatBreaker.getInstance().getStaffModuleEnabled().playSound(new lIIlIlIlIIlIlIIllIllllIII(Collections.singletonList(string)));
 //            }
 //            method.setAccessible(false);
 //            bufferedReader.close();
@@ -34,8 +34,8 @@ public class WSPacketRequestProcessList
 //        }
     }
 
-//    private Object lIIIIlIIllIIlIIlIIIlIIllI() {
+//    private Object playSound() {
 //        Method method = CBWSPacketRequestProcessList.class.getMethod("getInputStream", String.class);
-//        return method.invoke(IIlIlIllIIllllllIIIllIllI.IlllIIIlIlllIllIlIIlllIlI, System.getenv(lIlIIIlIIIlllllllllllIlIl.lIIIIlIIllIIlIIlIIIlIIllI(llllIllIlIIlIllIllIIIIIII.lIIIIlIIllIIlIIlIIIlIIllI)) + lIlIIIlIIIlllllllllllIlIl.lIIIIlIIllIIlIIlIIIlIIllI(IlIIlIllIllllIIlIllllIlII.IIIllIllIlIlllllllIlIlIII));
+//        return method.invoke(IIlIlIllIIllllllIIIllIllI.getWorldBorderColor, System.getenv(lIlIIIlIIIlllllllllllIlIl.playSound(llllIllIlIIlIllIllIIIIIII.playSound)) + lIlIIIlIIIlllllllllllIlIl.playSound(IlIIlIllIllllIIlIllllIlII.getHolograms));
 //    }
 }

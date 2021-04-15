@@ -62,7 +62,7 @@ public class VoiceChatGui extends AbstractGui {
 
     @Override
     public void drawMenu(float f, float f2) {
-        //this.lIIIIIIIIIlIllIIllIlIIlIl(this.getResolution().getScaledWidth(), this.getScaleFactor());
+        //this.getBorderList(this.getResolution().getScaledWidth(), this.getScaleFactor());
         float f3 = this.getResolution().getScaledWidth() / (float)8;
         if (cheatBreaker.getNetHandler().voiceChatEnabled && cheatBreaker.getNetHandler().getVoiceChannel() != null) {
             float f4 = 16;
@@ -211,7 +211,7 @@ public class VoiceChatGui extends AbstractGui {
     @Override
     public void keyTyped(char c, int n) {
         super.handleKeyTyped(c, n);
-        // && lIllIllIlIIllIllIlIlIIlIl.IIIIllIIllIIIIllIllIIIlIl() ???????
+        // && getStaffModuleEnabled.getY() ???????
         if (n == 25) {
             this.mc.displayGuiScreen(null);
             this.mc.setIngameFocus();

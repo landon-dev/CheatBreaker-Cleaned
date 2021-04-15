@@ -2,6 +2,7 @@ package com.cheatbreaker.client.ui.mainmenu;
 
 import java.awt.Color;
 
+import com.cheatbreaker.client.CheatBreaker;
 import com.cheatbreaker.client.ui.util.RenderUtil;
 import com.cheatbreaker.client.ui.fading.MinMaxFade;
 import com.cheatbreaker.client.ui.fading.CosineFade;
@@ -63,16 +64,16 @@ public class MainMenu extends MainMenuBase {
         if (this.llIlIIIlIIIIlIlllIlIIIIll()) {
             drawRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), new Color(1.0f, 1.0f, 1.0f, 1.0f - 1.0f * this.IlIlllIIIIllIllllIllIIlIl.IllIIIIIIIlIlIllllIIllIII()).getRGB());
         }
-        this.lIIIIlIIllIIlIIlIIIlIIllI((double)this.getScaledWidth(), (double)this.getScaledHeight(), f3);
+        this.drawLogo((double)this.getScaledWidth(), (double)this.getScaledHeight(), f3);
         float f5 = this.getScaledWidth() / 2.0f - (float)80;
         float f6 = this.getScaledHeight() - (float)40;
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)f5, (double)f6, (double)(f5 + (float)160), (double)(f6 + (float)10), (double)8, new Color(218, 66, 83, (int)((float)255 * (1.0f - f3))).getRGB());
     }
 
-    private void lIIIIlIIllIIlIIlIIIlIIllI(double d, double d2, float f) {
+    private void drawLogo(double scaledWidth, double scaledHeight, float f) {
         float f2 = 27;
-        double d3 = d / (double)2 - (double)f2;
-        double d4 = d2 / (double)2 - (double)f2 - (double)((float)35 * f);
+        double d3 = scaledWidth / (double)2 - (double)f2;
+        double d4 = scaledHeight / (double)2 - (double)f2 - (double)((float)35 * f);
         GL11.glPushMatrix();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glTranslatef((float)d3, (float)d4, 1.0f);

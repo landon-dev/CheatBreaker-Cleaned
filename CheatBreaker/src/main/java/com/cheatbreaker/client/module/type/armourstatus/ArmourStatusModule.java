@@ -2,7 +2,6 @@ package com.cheatbreaker.client.module.type.armourstatus;
 
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
-import com.cheatbreaker.client.event.type.RenderPreviewEvent;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.ui.module.*;
 import net.minecraft.client.Minecraft;
@@ -35,7 +34,7 @@ public class ArmourStatusModule extends AbstractModule {
     public static RenderItem renderItem;
     public static final List<ArmourStatusDamageComparable> damageColors;
     private static List<ArmourStatusItem> items;
-    private static ScaledResolution lIIIIIllllIIIIlIlIIIIlIlI;
+    private static ScaledResolution scaledResolution;
 
     public ArmourStatusModule() {
         super("Armor Status");
@@ -66,14 +65,14 @@ public class ArmourStatusModule extends AbstractModule {
         //this.addEvent(GuiDrawEvent.class, this::renderReal);
     }
 
-    private void renderPreview(GuiDrawEvent lIllIlIlllIIlIIllIIlIIlII2) {
+    private void renderPreview(GuiDrawEvent event) {
         if (!this.isRenderHud()) {
             return;
         }
         ArrayList<ArmourStatusItem> arrayList = new ArrayList<ArmourStatusItem>();
         for (int i = 3; i >= 0; --i) {
-            ItemStack lIlIlIlIlIllllIlllIIIlIlI2 = this.minecraft.thePlayer.inventory.armorInventory[i];
-            arrayList.add(new ArmourStatusItem(lIlIlIlIlIllllIlllIIIlIlI2, 16, 16, 2, true));
+            ItemStack armorItemStack = this.minecraft.thePlayer.inventory.armorInventory[i];
+            arrayList.add(new ArmourStatusItem(armorItemStack, 16, 16, 2, true));
         }
         if (arrayList.isEmpty()) {
             arrayList.add(new ArmourStatusItem(new ItemStack(Item.getItemById(310)), 16, 16, 2, true));
@@ -88,14 +87,14 @@ public class ArmourStatusModule extends AbstractModule {
         }
         GL11.glPushMatrix();
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        lIIIIIllllIIIIlIlIIIIlIlI = lIllIlIlllIIlIIllIIlIIlII2.getResolution();
-        this.scaleAndTranslate(lIIIIIllllIIIIlIlIIIIlIlI);
+        scaledResolution = event.getResolution();
+        this.scaleAndTranslate(scaledResolution);
         this.lIIIIlIIllIIlIIlIIIlIIllI(this.minecraft, arrayList);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glPopMatrix();
     }
 
-    private void renderReal(GuiDrawEvent lIllIllIlIIllIllIlIlIIlIl2) {
+    private void renderReal(GuiDrawEvent event) {
         if (!this.isRenderHud()) {
             return;
         }
@@ -104,8 +103,8 @@ public class ArmourStatusModule extends AbstractModule {
             if (!items.isEmpty()) {
                 GL11.glPushMatrix();
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-                lIIIIIllllIIIIlIlIIIIlIlI = lIllIllIlIIllIllIlIlIIlIl2.getResolution();
-                this.scaleAndTranslate(lIIIIIllllIIIIlIlIIIIlIlI);
+                scaledResolution = event.getResolution();
+                this.scaleAndTranslate(scaledResolution);
                 this.lIIIIlIIllIIlIIlIIIlIIllI(this.minecraft, items);
                 GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
                 GL11.glPopMatrix();

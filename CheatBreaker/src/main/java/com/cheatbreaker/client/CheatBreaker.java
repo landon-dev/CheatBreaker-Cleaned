@@ -47,10 +47,10 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
 
     @Getter
     public static CheatBreaker instance;
-    public static byte[] lIIIIIllllIIIIlIlIIIIlIlI;
+    public static byte[] encKey;
 
     static {
-        lIIIIIllllIIIIlIlIIIIlIlI = "Decencies".getBytes();
+        encKey = "Decencies".getBytes();
     }
 
     public List<Profile> profiles;
@@ -328,17 +328,16 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
     }
 
     public void sendSound(final String s) {
-        this.lIIIIlIIllIIlIIlIIIlIIllI(s, 1.0f);
+        this.playSound(s, 1.0f);
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(final String s, final float n) {
+    public void playSound(final String soundName, final float volume) {
         if (!(boolean)this.globalSettings.muteCheatBreakerSounds.getValue()) {
-            Minecraft.getMinecraft().getSoundHandler().field_147694_f.playSound(s, n);
+            Minecraft.getMinecraft().getSoundHandler().field_147694_f.playSound(soundName, volume);
         }
     }
 
     public ResourceLocation getHeadLocation(String displayName, String uuid) {
-
         return new ResourceLocation("client/defaults/steve.png");
     }
 

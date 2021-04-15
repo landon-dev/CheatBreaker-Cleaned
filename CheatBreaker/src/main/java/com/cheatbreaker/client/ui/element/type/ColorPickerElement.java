@@ -264,7 +264,7 @@ public class ColorPickerElement extends AbstractModulesGuiElement {
                 int n9 = n + n6 * 12;
                 n8 = n2 + n5 * 12;
                 colorPickerColorElement.yOffset = this.yOffset;
-                //illllllllIlIIIIIIIIllIIII.IlllIIIlIlllIllIlIIlllIlI = this.IlllIIIlIlllIllIlIIlllIlI;
+                //illllllllIlIIIIIIIIllIIII.getWorldBorderColor = this.getWorldBorderColor;
                 colorPickerColorElement.setDimensions(n9, n8, 10, 10);
             }
             if (colorPickerColorElement.isMouseInside(n3, n4)) {

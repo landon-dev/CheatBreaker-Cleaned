@@ -36,12 +36,12 @@ public class MainMenuBase extends AbstractGui {
     private final ResourceLocation logo = new ResourceLocation("client/logo_42.png");
     private final IconButtonElement exitButton;
     private final IconButtonElement languageButton;
-    private final AccountList IlllIllIlIIIIlIIlIIllIIIl;
+    private final AccountList accountList;
     private final TextButtonElement optionsButton;
     private final TextButtonElement changelogButton;
     private final TextButtonElement cosmeticsButton;
-    private final ColorFade IllIlIIIIlllIIllIIlllIIlI;
-    private final ResourceLocation[] IllIlIlIllllIlIIllllIIlll = new ResourceLocation[]{new ResourceLocation("client/panorama/0.png"), new ResourceLocation("client/panorama/1.png"), new ResourceLocation("client/panorama/2.png"), new ResourceLocation("client/panorama/3.png"), new ResourceLocation("client/panorama/4.png"), new ResourceLocation("client/panorama/5.png")};
+    private final ColorFade colorFade;
+    private final ResourceLocation[] background_images = new ResourceLocation[]{new ResourceLocation("client/panorama/0.png"), new ResourceLocation("client/panorama/1.png"), new ResourceLocation("client/panorama/2.png"), new ResourceLocation("client/panorama/3.png"), new ResourceLocation("client/panorama/4.png"), new ResourceLocation("client/panorama/5.png")};
     private ResourceLocation panoramaBackgroundLocation;
     private final File launcherAccounts;
     private final List<Account> accountsList;
@@ -53,11 +53,11 @@ public class MainMenuBase extends AbstractGui {
         this.optionsButton = new TextButtonElement("OPTIONS");
         this.cosmeticsButton = new TextButtonElement("COSMETICS");
         this.changelogButton = new TextButtonElement("CHANGELOG");
-        this.IllIlIIIIlllIIllIIlllIIlI = new ColorFade(0xF000000, -16777216);
+        this.colorFade = new ColorFade(0xF000000, -16777216);
         this.exitButton = new IconButtonElement(new ResourceLocation("client/icons/delete-64.png"));
         this.languageButton = new IconButtonElement(6, new ResourceLocation("client/icons/globe-24.png"));
         this.accountButtonWidth = CheatBreaker.getInstance().robotoRegular13px.getStringWidth(Minecraft.getMinecraft().getSession().getUsername());
-        this.IlllIllIlIIIIlIIlIIllIIIl = new AccountList(this, Minecraft.getMinecraft().getSession().getUsername(), CheatBreaker.getInstance().getHeadLocation(Minecraft.getMinecraft().getSession().getUsername(), Minecraft.getMinecraft().getSession().getPlayerID()));
+        this.accountList = new AccountList(this, Minecraft.getMinecraft().getSession().getUsername(), CheatBreaker.getInstance().getHeadLocation(Minecraft.getMinecraft().getSession().getUsername(), Minecraft.getMinecraft().getSession().getPlayerID()));
         this.loadAccounts();
     }
 
@@ -73,7 +73,8 @@ public class MainMenuBase extends AbstractGui {
                 final Set<Map.Entry<String, JsonElement>> accounts = object.getAsJsonObject("accounts").entrySet();
                 for (Map.Entry<String, JsonElement> accountElement : accounts) {
                     JsonObject account = accountElement.getValue().getAsJsonObject();
-                    String accessToken = account.get("accessToken").getAsString();
+                    //String accessToken = account.get("accessToken").getAsString();
+                    String accessToken = "null";
                     JsonObject minecraftProfileObject = account.getAsJsonObject("minecraftProfile");
                     String uuid = minecraftProfileObject.get("id").getAsString();
                     String displayName = minecraftProfileObject.get("name").getAsString();
@@ -89,8 +90,8 @@ public class MainMenuBase extends AbstractGui {
                         }
                         if (minecraft.getSession() == null || !finalAccount.getUsername().equalsIgnoreCase(minecraft.getSession().getUsername()))
                             continue;
-                        this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(finalAccount.getDisplayName());
-                        this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
+                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(finalAccount.getDisplayName());
+                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
                         this.updateAccountButtonSize();
                     } else {
                         System.err.println("[CB] userName is null.");
@@ -105,8 +106,8 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void handleMouseInput() {
         super.handleMouseInput();
-        if (this.IlllIllIlIIIIlIIlIIllIIIl != null) {
-            this.IlllIllIlIIIIlIIlIIllIIIl.handleElementMouse();
+        if (this.accountList != null) {
+            this.accountList.handleElementMouse();
         }
     }
 
@@ -119,8 +120,8 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void initGui() {
         super.initGui();
-        DynamicTexture IIIIllIIllIIIIllIllIIIlIl = new DynamicTexture(256, 256);
-        this.panoramaBackgroundLocation = this.mc.getTextureManager().getDynamicTextureLocation("background", IIIIllIIllIIIIllIllIIIlIl);
+        DynamicTexture dynamicTexture = new DynamicTexture(256, 256);
+        this.panoramaBackgroundLocation = this.mc.getTextureManager().getDynamicTextureLocation("background", dynamicTexture);
         this.optionsButton.setElementSize((float) 124, (float) 6, (float) 42, 20);
         this.cosmeticsButton.setElementSize((float) 167, (float) 6, (float) 48, 20);
         this.exitButton.setElementSize(this.getScaledWidth() - (float) 30, (float) 7, (float) 23, 17);
@@ -129,7 +130,7 @@ public class MainMenuBase extends AbstractGui {
     }
 
     public void updateAccountButtonSize() {
-        this.IlllIllIlIIIIlIIlIIllIIIl.setElementSize(this.getScaledWidth() - (float) 35 - this.IlllIllIlIIIIlIIlIIllIIIl.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), (float) 7, this.IlllIllIlIIIIlIIlIIllIIIl.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), 17);
+        this.accountList.setElementSize(this.getScaledWidth() - (float) 35 - this.accountList.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), (float) 7, this.accountList.IIIIllIIllIIIIllIllIIIlIl(this.accountButtonWidth), 17);
     }
 
     @Override
@@ -145,7 +146,7 @@ public class MainMenuBase extends AbstractGui {
         drawGradientRect(0.0f, 0.0f, this.getScaledWidth(), this.getScaledHeight(), 0x5FFFFFFF, 0x2FFFFFFF);
         drawGradientRect(0.0f, 0.0f, this.getScaledWidth(), 160, -553648128, 0);
         boolean bl = f < this.optionsButton.getX() && f2 < (float) 30;
-        Color color = this.IllIlIIIIlllIIllIIlllIIlI.lIIIIIIIIIlIllIIllIlIIlIl(bl);
+        Color color = this.colorFade.lIIIIIIIIIlIllIIllIlIIlIl(bl);
         CheatBreaker.getInstance().robotoRegular24px.drawCenteredString("CheatBreaker", 37, (float) 9, color.getRGB());
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI(this.logo, (float) 10, (float) 8, (float) 6);
@@ -156,7 +157,7 @@ public class MainMenuBase extends AbstractGui {
         CheatBreaker.getInstance().playRegular18px.drawStringWithShadow(string2, this.getScaledWidth() - (float) CheatBreaker.getInstance().playRegular18px.getStringWidth(string2) - 5f, this.getScaledHeight() - 14f, -1879048193);
         this.exitButton.drawElement(f, f2, true);
         if (!(mc.currentScreen instanceof GuiCosmetics)) this.languageButton.drawElement(f, f2, true);
-        this.IlllIllIlIIIIlIIlIIllIIIl.drawElement(f, f2, true);
+        this.accountList.drawElement(f, f2, true);
         this.optionsButton.drawElement(f, f2, true);
         this.cosmeticsButton.drawElement(f, f2, true);
     }
@@ -169,7 +170,7 @@ public class MainMenuBase extends AbstractGui {
     @Override
     public void onMouseClicked(float mouseX, float mouseY, int button) {
         this.exitButton.handleElementMouseClicked(mouseX, mouseY, button, true);
-        this.IlllIllIlIIIIlIIlIIllIIIl.handleElementMouseClicked(mouseX, mouseY, button, true);
+        this.accountList.handleElementMouseClicked(mouseX, mouseY, button, true);
         if (this.exitButton.isMouseInside(mouseX, mouseY)) {
             this.mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
             this.mc.shutdown();
@@ -243,7 +244,7 @@ public class MainMenuBase extends AbstractGui {
                     GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
                 }
 
-                this.mc.getTextureManager().bindTexture(IllIlIlIllllIlIIllllIIlll[var10]);
+                this.mc.getTextureManager().bindTexture(background_images[var10]);
                 var4.startDrawingQuads();
                 var4.setColorRGBA_I(16777215, 255 / (var6 + 1));
                 float var11 = 0.0F;
@@ -352,8 +353,8 @@ public class MainMenuBase extends AbstractGui {
                     if (!object2.func_148256_e().getId().toString().replaceAll("-", "").equalsIgnoreCase(selectedAccount.getUUID().replaceAll("-", "")))
                         continue;
                     Minecraft.getMinecraft().setSession(object2);
-                    this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                    this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
+                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
                     this.updateAccountButtonSize();
                     return;
                 }
@@ -373,8 +374,8 @@ public class MainMenuBase extends AbstractGui {
                     return;
                 }
                 System.out.println("Updated accessToken and logged user in.");
-                this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                this.IlllIllIlIIIIlIIlIIllIIIl.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
+                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
                 this.updateAccountButtonSize();
                 CheatBreaker.getInstance().sessions.add(session);
                 Minecraft.getMinecraft().setSession(session);

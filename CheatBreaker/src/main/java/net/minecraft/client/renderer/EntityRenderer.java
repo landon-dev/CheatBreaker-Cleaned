@@ -1123,8 +1123,8 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             // CB start
 
             /*
-                        llllIIIllllllIlllIIlIIlll llllIIIllllllIlllIIlIIlll2 = CheatBreaker.getInstance().IIIIllIIllIIIIllIllIIIlIl().IlIIlIIIIlIIIIllllIIlIllI;
-            if (!llllIIIllllllIlllIIlIIlll2.lIIIIlIIllIIlIIlIIIlIIllI) {
+                        llllIIIllllllIlllIIlIIlll llllIIIllllllIlllIIlIIlll2 = CheatBreaker.getInstance().getY().IlIIlIIIIlIIIIllllIIlIllI;
+            if (!llllIIIllllllIlllIIlIIlll2.playSound) {
                 if (this.IllIlIIIIlllIIllIIlllIIlI.gameSettings.lllIIlIlIllIIlIllIIIIIlII) {
                     this.IIllIlIllIlIllIIlIllIlIII += f4;
                     this.lIlIllIlIlIIIllllIlIllIll += f5;
@@ -1132,9 +1132,9 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                     this.IIlIlIIlIIIlIlllllIIlIIlI = f;
                     f4 = this.IlIIlIIlIllIIIIllIIllIlIl * var10_17;
                     f5 = this.llllIIIIlIlIllIIIllllIIll * var10_17;
-                    this.IllIlIIIIlllIIllIIlllIIlI.thePlayer.IIIllIllIlIlllllllIlIlIII(f4, f5 * (float)n);
+                    this.IllIlIIIIlllIIllIIlllIIlI.thePlayer.getHolograms(f4, f5 * (float)n);
                 } else {
-                    this.IllIlIIIIlllIIllIIlllIIlI.thePlayer.IIIllIllIlIlllllllIlIlIII(f4, f5 * (float)n);
+                    this.IllIlIIIIlllIIllIIlllIIlI.thePlayer.getHolograms(f4, f5 * (float)n);
                 }
             } else if (this.IllIlIIIIlllIIllIIlllIIlI.gameSettings.lllIIlIlIllIIlIllIIIIIlII) {
                 this.IIllIlIllIlIllIIlIllIlIII += f4;
@@ -1143,9 +1143,9 @@ public class EntityRenderer implements IResourceManagerReloadListener {
                 this.IIlIlIIlIIIlIlllllIIlIIlI = f;
                 f4 = this.IlIIlIIlIllIIIIllIIllIlIl * var10_17;
                 f5 = this.llllIIIIlIlIllIIIllllIIll * var10_17;
-                llllIIIllllllIlllIIlIIlll2.lIIIIlIIllIIlIIlIIIlIIllI(f4, f5 * (float)n);
+                llllIIIllllllIlllIIlIIlll2.playSound(f4, f5 * (float)n);
             } else {
-                llllIIIllllllIlllIIlIIlll2.lIIIIlIIllIIlIIlIIIlIIllI(f4, f5 * (float)n);
+                llllIIIllllllIlllIIlIIlll2.playSound(f4, f5 * (float)n);
             }
              */
 
@@ -1511,11 +1511,11 @@ public class EntityRenderer implements IResourceManagerReloadListener {
             }
 
             // This is here for when we add nametags ;))
-//            if (CBClient.getInstance().getModuleManager().nametagsModule.IlIlIIIlllIIIlIlllIlIllIl()) {
+//            if (CBClient.getInstance().getModuleManager().nametagsModule.getColor()) {
 //                CBClient.getInstance().getModuleManager().nametagsModule.keybind.rewind();
 //                GL11.glGetFloat(2982, CBClient.getInstance().getModuleHandler().nametagsModule.keybind);
-//                CBClient.getInstance().getModuleManager().nametagsModule.lIIIIIIIIIlIllIIllIlIIlIl.rewind();
-//                GL11.glGetFloat(2983, CBClient.getInstance().getModuleHandler().nametagsModule.lIIIIIIIIIlIllIIllIlIIlIl);
+//                CBClient.getInstance().getModuleManager().nametagsModule.getBorderList.rewind();
+//                GL11.glGetFloat(2983, CBClient.getInstance().getModuleHandler().nametagsModule.getBorderList);
 //            }
 
             if (CheatBreaker.getInstance().getModuleManager().teammatesModule.IlllIIIlIlllIllIlIIlllIlI()) {

@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 public class InputFieldElement extends AbstractElement {
     private final CBFontRenderer fontRenderer;
-    private String IllIIIIIIIlIlIllllIIllIII = "";
+    private String fieldText = "";
     private int lIIIIllIIlIlIllIIIlIllIlI = 32;
     private int IlllIllIlIIIIlIIlIIllIIIl;
     private boolean IlIlllIIIIllIllllIllIIlIl = true;
@@ -37,18 +37,18 @@ public class InputFieldElement extends AbstractElement {
     }
 
     public void setText(String string) {
-        this.IllIIIIIIIlIlIllllIIllIII = string.length() > this.lIIIIllIIlIlIllIIIlIllIlI ? string.substring(0, this.lIIIIllIIlIlIllIIIlIllIlI) : string;
+        this.fieldText = string.length() > this.lIIIIllIIlIlIllIIIlIllIlI ? string.substring(0, this.lIIIIllIIlIlIllIIIlIllIlI) : string;
         this.llIIlllIIIIlllIllIlIlllIl();
     }
 
     public String getText() {
-        return this.IllIIIIIIIlIlIllllIIllIII;
+        return this.fieldText;
     }
 
     public String IlllIllIlIIIIlIIlIIllIIIl() {
         int n = Math.min(this.IIIlIIllllIIllllllIlIIIll, this.lllIIIIIlIllIlIIIllllllII);
         int n2 = Math.max(this.IIIlIIllllIIllllllIlIIIll, this.lllIIIIIlIllIlIIIllllllII);
-        return this.IllIIIIIIIlIlIllllIIllIII.substring(n, n2);
+        return this.fieldText.substring(n, n2);
     }
 
     public void lIIIIIIIIIlIllIIllIlIIlIl(String string) {
@@ -57,10 +57,10 @@ public class InputFieldElement extends AbstractElement {
         String string3 = StringSanitizer.sanitize(string);
         int n2 = Math.min(this.IIIlIIllllIIllllllIlIIIll, this.lllIIIIIlIllIlIIIllllllII);
         int n3 = Math.max(this.IIIlIIllllIIllllllIlIIIll, this.lllIIIIIlIllIlIIIllllllII);
-        int n4 = this.lIIIIllIIlIlIllIIIlIllIlI - this.IllIIIIIIIlIlIllllIIllIII.length() - (n2 - this.lllIIIIIlIllIlIIIllllllII);
+        int n4 = this.lIIIIllIIlIlIllIIIlIllIlI - this.fieldText.length() - (n2 - this.lllIIIIIlIllIlIIIllllllII);
         boolean bl = false;
-        if (this.IllIIIIIIIlIlIllllIIllIII.length() > 0) {
-            string2 = string2 + this.IllIIIIIIIlIlIllllIIllIII.substring(0, n2);
+        if (this.fieldText.length() > 0) {
+            string2 = string2 + this.fieldText.substring(0, n2);
         }
         if (n4 < string3.length()) {
             string2 = string2 + string3.substring(0, n4);
@@ -69,15 +69,15 @@ public class InputFieldElement extends AbstractElement {
             string2 = string2 + string3;
             n = string3.length();
         }
-        if (this.IllIIIIIIIlIlIllllIIllIII.length() > 0 && n3 < this.IllIIIIIIIlIlIllllIIllIII.length()) {
-            string2 = string2 + this.IllIIIIIIIlIlIllllIIllIII.substring(n3);
+        if (this.fieldText.length() > 0 && n3 < this.fieldText.length()) {
+            string2 = string2 + this.fieldText.substring(n3);
         }
-        this.IllIIIIIIIlIlIllllIIllIII = string2;
+        this.fieldText = string2;
         this.IIIIllIlIIIllIlllIlllllIl(n2 - this.lllIIIIIlIllIlIIIllllllII + n);
     }
 
     public void lIIIIlIIllIIlIIlIIIlIIllI(int n) {
-        if (this.IllIIIIIIIlIlIllllIIllIII.length() != 0) {
+        if (this.fieldText.length() != 0) {
             if (this.lllIIIIIlIllIlIIIllllllII != this.IIIlIIllllIIllllllIlIIIll) {
                 this.lIIIIIIIIIlIllIIllIlIIlIl("");
             } else {
@@ -87,7 +87,7 @@ public class InputFieldElement extends AbstractElement {
     }
 
     public void lIIIIIIIIIlIllIIllIlIIlIl(int n) {
-        if (this.IllIIIIIIIlIlIllllIIllIII.length() != 0) {
+        if (this.fieldText.length() != 0) {
             if (this.lllIIIIIlIllIlIIIllllllII != this.IIIlIIllllIIllllllIlIIIll) {
                 this.lIIIIIIIIIlIllIIllIlIIlIl("");
             } else {
@@ -96,12 +96,12 @@ public class InputFieldElement extends AbstractElement {
                 int n3 = bl ? this.IIIlIIllllIIllllllIlIIIll : this.IIIlIIllllIIllllllIlIIIll + n;
                 String string = "";
                 if (n2 >= 0) {
-                    string = this.IllIIIIIIIlIlIllllIIllIII.substring(0, n2);
+                    string = this.fieldText.substring(0, n2);
                 }
-                if (n3 < this.IllIIIIIIIlIlIllllIIllIII.length()) {
-                    string = string + this.IllIIIIIIIlIlIllllIIllIII.substring(n3);
+                if (n3 < this.fieldText.length()) {
+                    string = string + this.fieldText.substring(n3);
                 }
-                this.IllIIIIIIIlIlIllllIIllIII = string;
+                this.fieldText = string;
                 if (bl) {
                     this.IIIIllIlIIIllIlllIlllllIl(n);
                 }
@@ -123,20 +123,20 @@ public class InputFieldElement extends AbstractElement {
         int n4 = Math.abs(n);
         for (int i = 0; i < n4; ++i) {
             if (bl2) {
-                while (bl && n3 > 0 && this.IllIIIIIIIlIlIllllIIllIII.charAt(n3 - 1) == ' ') {
+                while (bl && n3 > 0 && this.fieldText.charAt(n3 - 1) == ' ') {
                     --n3;
                 }
-                while (n3 > 0 && this.IllIIIIIIIlIlIllllIIllIII.charAt(n3 - 1) != ' ') {
+                while (n3 > 0 && this.fieldText.charAt(n3 - 1) != ' ') {
                     --n3;
                 }
                 continue;
             }
-            int n5 = this.IllIIIIIIIlIlIllllIIllIII.length();
-            if ((n3 = this.IllIIIIIIIlIlIllllIIllIII.indexOf(32, n3)) == -1) {
+            int n5 = this.fieldText.length();
+            if ((n3 = this.fieldText.indexOf(32, n3)) == -1) {
                 n3 = n5;
                 continue;
             }
-            while (bl && n3 < n5 && this.IllIIIIIIIlIlIllllIIllIII.charAt(n3) == ' ') {
+            while (bl && n3 < n5 && this.fieldText.charAt(n3) == ' ') {
                 ++n3;
             }
         }
@@ -149,7 +149,7 @@ public class InputFieldElement extends AbstractElement {
 
     public void IIIIllIIllIIIIllIllIIIlIl(int n) {
         this.IIIlIIllllIIllllllIlIIIll = n;
-        int n2 = this.IllIIIIIIIlIlIllllIIllIII.length();
+        int n2 = this.fieldText.length();
         if (this.IIIlIIllllIIllllllIlIIIll < 0) {
             this.IIIlIIllllIIllllllIlIIIll = 0;
         }
@@ -164,7 +164,7 @@ public class InputFieldElement extends AbstractElement {
     }
 
     public void llIIlllIIIIlllIllIlIlllIl() {
-        this.IIIIllIIllIIIIllIllIIIlIl(this.IllIIIIIIIlIlIllllIIllIII.length());
+        this.IIIIllIIllIIIIllIllIIIlIl(this.fieldText.length());
     }
 
     public boolean lIIIIIIIIIlIllIIllIlIIlIl(char c, int n) {
@@ -244,7 +244,7 @@ public class InputFieldElement extends AbstractElement {
             }
             case 207: {
                 if (GuiScreen.isShiftKeyDown()) {
-                    this.lIIIIllIIlIlIllIIIlIllIlI(this.IllIIIIIIIlIlIllllIIllIII.length());
+                    this.lIIIIllIIlIlIllIIIlIllIlI(this.fieldText.length());
                 } else {
                     this.llIIlllIIIIlllIllIlIlllIl();
                 }
@@ -288,7 +288,7 @@ public class InputFieldElement extends AbstractElement {
             if (this.IlIlllIIIIllIllllIllIIlIl) {
                 f3 -= (float)4;
             }
-            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.IllIIIIIIIlIlIllllIIllIII.substring(this.llIlIIIlIIIIlIlllIlIIIIll), this.IIIIIIlIlIlIllllllIlllIlI());
+            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.fieldText.substring(this.llIlIIIlIIIIlIlllIlIIIIll), this.IIIIIIlIlIlIllllllIlllIlI());
             this.IIIIllIIllIIIIllIllIIIlIl(this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(string, f3).length() + this.llIlIIIlIIIIlIlllIlIIIIll);
         }
         return false;
@@ -302,7 +302,7 @@ public class InputFieldElement extends AbstractElement {
             int n = this.IIIlllIIIllIllIlIIIIIIlII ? this.lIIIIIllllIIIIlIlIIIIlIlI : this.IIIIIIlIlIlIllllllIlllIlI;
             int n2 = this.IIIlIIllllIIllllllIlIIIll - this.llIlIIIlIIIIlIlllIlIIIIll;
             int n3 = this.lllIIIIIlIllIlIIIllllllII - this.llIlIIIlIIIIlIlllIlIIIIll;
-            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.IllIIIIIIIlIlIllllIIllIII.substring(this.llIlIIIlIIIIlIlllIlIIIIll), this.IIIIIIlIlIlIllllllIlllIlI());
+            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.fieldText.substring(this.llIlIIIlIIIIlIlllIlIIIIll), this.IIIIIIlIlIlIllllllIlllIlI());
             boolean bl = n2 >= 0 && n2 <= string.length();
             boolean bl2 = this.lIIlIlIllIIlIIIlIIIlllIII && this.IlllIllIlIIIIlIIlIIllIIIl / 6 % 2 == 0 && bl;
             float f = this.IlIlllIIIIllIllllIllIIlIl ? this.x + (float)4 : this.x;
@@ -317,7 +317,7 @@ public class InputFieldElement extends AbstractElement {
             } else if (!this.lllIIIIIlIllIlIIIllllllII()) {
                 this.fontRenderer.drawString(this.text, f, f2, n);
             }
-            boolean bl3 = this.IIIlIIllllIIllllllIlIIIll < this.IllIIIIIIIlIlIllllIIllIII.length() || this.IllIIIIIIIlIlIllllIIllIII.length() >= this.IIIlllIIIllIllIlIIIIIIlII();
+            boolean bl3 = this.IIIlIIllllIIllllllIlIIIll < this.fieldText.length() || this.fieldText.length() >= this.IIIlllIIIllIllIlIIIIIIlII();
             float f4 = f3;
             if (!bl) {
                 f4 = n2 > 0 ? f + this.width : f;
@@ -377,8 +377,8 @@ public class InputFieldElement extends AbstractElement {
 
     public void trimToLength(int n) {
         this.lIIIIllIIlIlIllIIIlIllIlI = n;
-        if (this.IllIIIIIIIlIlIllllIIllIII.length() > n) {
-            this.IllIIIIIIIlIlIllllIIllIII = this.IllIIIIIIIlIlIllllIIllIII.substring(0, n);
+        if (this.fieldText.length() > n) {
+            this.fieldText = this.fieldText.substring(0, n);
         }
     }
 
@@ -430,7 +430,7 @@ public class InputFieldElement extends AbstractElement {
     }
 
     public void lIIIIllIIlIlIllIIIlIllIlI(int n) {
-        int n2 = this.IllIIIIIIIlIlIllllIIllIII.length();
+        int n2 = this.fieldText.length();
         if (n > n2) {
             n = n2;
         }
@@ -443,10 +443,10 @@ public class InputFieldElement extends AbstractElement {
                 this.llIlIIIlIIIIlIlllIlIIIIll = n2;
             }
             float f = this.IIIIIIlIlIlIllllllIlllIlI();
-            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.IllIIIIIIIlIlIllllIIllIII.substring(this.llIlIIIlIIIIlIlllIlIIIIll), f);
+            String string = this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.fieldText.substring(this.llIlIIIlIIIIlIlllIlIIIIll), f);
             int n3 = string.length() + this.llIlIIIlIIIIlIlllIlIIIIll;
             if (n == this.llIlIIIlIIIIlIlllIlIIIIll) {
-                this.llIlIIIlIIIIlIlllIlIIIIll -= this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.IllIIIIIIIlIlIllllIIllIII, f, true).length();
+                this.llIlIIIlIIIIlIlllIlIIIIll -= this.fontRenderer.lIIIIlIIllIIlIIlIIIlIIllI(this.fieldText, f, true).length();
             }
             if (n > n3) {
                 this.llIlIIIlIIIIlIlllIlIIIIll += n - n3;

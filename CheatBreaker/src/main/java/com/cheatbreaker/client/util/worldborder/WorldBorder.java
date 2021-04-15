@@ -7,38 +7,38 @@ import javax.vecmath.Vector2d;
 import java.awt.Color;
 
 public class WorldBorder {
-    private String lIIIIIIIIIlIllIIllIlIIlIl;
+    private String player;
     private String world;
-    private Color IIIIllIlIIIllIlllIlllllIl;
+    private Color packetColor;
     private Vector2d IIIIllIIllIIIIllIllIIIlIl;
     private Vector2d IlIlIIIlllIIIlIlllIlIllIl;
     private Vector2d IIIllIllIlIlllllllIlIlIII;
     private Vector2d IllIIIIIIIlIlIllllIIllIII;
     private Vector2d lIIIIllIIlIlIllIIIlIllIlI;
     private Vector2d IlllIllIlIIIIlIIlIIllIIIl;
-    private boolean IlIlllIIIIllIllllIllIIlIl;
-    private boolean llIIlllIIIIlllIllIlIlllIl;
+    private boolean isCanShrinkExpand;
+    private boolean isCancelsExit;
     private int lIIlIlIllIIlIIIlIIIlllIII;
     private int IIIlllIIIllIllIlIIIIIIlII;
     final WorldBorderManager worldBorder;
 
-    public WorldBorder(WorldBorderManager cBWorldBorder, String string, String string2, int n, double d, double d2, double d3, double d4, boolean bl, boolean bl2) {
+    public WorldBorder(WorldBorderManager cBWorldBorder, String player, String world, int packetColor, double minX, double minZ, double maxX, double maxZ, boolean isCanShrinkExpand, boolean isCancelsExit) {
         this.worldBorder = cBWorldBorder;
-        this.lIIIIIIIIIlIllIIllIlIIlIl = string;
-        this.world = string2;
-        this.IIIIllIlIIIllIlllIlllllIl = new Color(n, true);
-        this.IlIlllIIIIllIllllIllIIlIl = bl;
-        this.llIIlllIIIIlllIllIlIlllIl = bl2;
-        this.IIIllIllIlIlllllllIlIlIII = this.IIIIllIIllIIIIllIllIIIlIl = new Vector2d(d, d2);
-        this.IllIIIIIIIlIlIllllIIllIII = this.IlIlIIIlllIIIlIlllIlIllIl = new Vector2d(d3, d4);
+        this.player = player;
+        this.world = world;
+        this.packetColor = new Color(packetColor, true);
+        this.isCanShrinkExpand = isCanShrinkExpand;
+        this.isCancelsExit = isCancelsExit;
+        this.IIIllIllIlIlllllllIlIlIII = this.IIIIllIIllIIIIllIllIIIlIl = new Vector2d(minX, minZ);
+        this.IllIIIIIIIlIlIllllIIllIII = this.IlIlIIIlllIIIlIlllIlIllIl = new Vector2d(maxX, maxZ);
     }
 
     public boolean lIIIIlIIllIIlIIlIIIlIIllI() {
-        return this.IlIlllIIIIllIllllIllIIlIl && this.IIIlllIIIllIllIlIIIIIIlII != 0 && this.lIIlIlIllIIlIIIlIIIlllIII < this.IIIlllIIIllIllIlIIIIIIlII;
+        return this.isCanShrinkExpand && this.IIIlllIIIllIllIlIIIIIIlII != 0 && this.lIIlIlIllIIlIIIlIIIlllIII < this.IIIlllIIIllIllIlIIIIIIlII;
     }
 
     public boolean lIIIIlIIllIIlIIlIIIlIIllI(double d, double d2) {
-        return !this.llIIlllIIIIlllIllIlIlllIl || !this.world.equals(WorldBorderManager.lIIIIlIIllIIlIIlIIIlIIllI(this.worldBorder).getNetHandler().getWorld()) || d + 1.0 > this.IlIlIIIlllIIIlIlllIlIllIl() && d < this.IIIIllIlIIIllIlllIlllllIl() && d2 + 1.0 > this.IIIllIllIlIlllllllIlIlIII() && d2 < this.IIIIllIIllIIIIllIllIIIlIl();
+        return !this.isCancelsExit || !this.world.equals(WorldBorderManager.getCBInstance(this.worldBorder).getNetHandler().getWorld()) || d + 1.0 > this.IlIlIIIlllIIIlIlllIlIllIl() && d < this.IIIIllIlIIIllIlllIlllllIl() && d2 + 1.0 > this.IIIllIllIlIlllllllIlIlIII() && d2 < this.IIIIllIIllIIIIllIllIIIlIl();
     }
 
     public void ting() {
@@ -111,16 +111,16 @@ public class WorldBorder {
         return Math.min(d3, d4);
     }
 
-    public String IllIIIIIIIlIlIllllIIllIII() {
-        return this.lIIIIIIIIIlIllIIllIlIIlIl;
+    public String getPlayer() {
+        return this.player;
     }
 
-    public String lIIIIllIIlIlIllIIIlIllIlI() {
+    public String getWorld() {
         return this.world;
     }
 
-    public Color IlllIllIlIIIIlIIlIIllIIIl() {
-        return this.IIIIllIlIIIllIlllIlllllIl;
+    public Color getPacketColor() {
+        return this.packetColor;
     }
 
     public Vector2d IlIlllIIIIllIllllIllIIlIl() {
@@ -147,12 +147,12 @@ public class WorldBorder {
         return this.IlllIllIlIIIIlIIlIIllIIIl;
     }
 
-    public boolean lllIIIIIlIllIlIIIllllllII() {
-        return this.IlIlllIIIIllIllllIllIIlIl;
+    public boolean isCanShrinkExpand() {
+        return this.isCanShrinkExpand;
     }
 
-    public boolean lIIIIIllllIIIIlIlIIIIlIlI() {
-        return this.llIIlllIIIIlllIllIlIlllIl;
+    public boolean isCancelsExit() {
+        return this.isCancelsExit;
     }
 
     public int IIIIIIlIlIlIllllllIlllIlI() {
@@ -163,35 +163,35 @@ public class WorldBorder {
         return this.IIIlllIIIllIllIlIIIIIIlII;
     }
 
-    public static String getPlayer(WorldBorder iIIlIllIIIlllIIlIIllIlIII) {
-        return iIIlIllIIIlllIIlIIllIlIII.lIIIIIIIIIlIllIIllIlIIlIl;
+    public static String getPlayer(WorldBorder worldBorder) {
+        return worldBorder.player;
     }
 
-    public static Vector2d lIIIIlIIllIIlIIlIIIlIIllI(WorldBorder iIIlIllIIIlllIIlIIllIlIII, Vector2d vec2d) {
-        iIIlIllIIIlllIIlIIllIlIII.lIIIIllIIlIlIllIIIlIllIlI = vec2d;
-        return iIIlIllIIIlllIIlIIllIlIII.lIIIIllIIlIlIllIIIlIllIlI;
+    public static Vector2d lIIIIlIIllIIlIIlIIIlIIllI(WorldBorder worldBorder, Vector2d vec2d) {
+        worldBorder.lIIIIllIIlIlIllIIIlIllIlI = vec2d;
+        return worldBorder.lIIIIllIIlIlIllIIIlIllIlI;
     }
 
-    public static Vector2d lIIIIIIIIIlIllIIllIlIIlIl(WorldBorder iIIlIllIIIlllIIlIIllIlIII, Vector2d vec2d) {
-        iIIlIllIIIlllIIlIIllIlIII.IlllIllIlIIIIlIIlIIllIIIl = vec2d;
-        return iIIlIllIIIlllIIlIIllIlIII.IlllIllIlIIIIlIIlIIllIIIl;
+    public static Vector2d lIIIIIIIIIlIllIIllIlIIlIl(WorldBorder worldBorder, Vector2d vec2d) {
+        worldBorder.IlllIllIlIIIIlIIlIIllIIIl = vec2d;
+        return worldBorder.IlllIllIlIIIIlIIlIIllIIIl;
     }
 
-    public static int lIIIIlIIllIIlIIlIIIlIIllI(WorldBorder iIIlIllIIIlllIIlIIllIlIII, int n) {
-        iIIlIllIIIlllIIlIIllIlIII.lIIlIlIllIIlIIIlIIIlllIII = n;
-        return iIIlIllIIIlllIIlIIllIlIII.lIIlIlIllIIlIIIlIIIlllIII;
+    public static int lIIIIlIIllIIlIIlIIIlIIllI(WorldBorder worldBorder, int n) {
+        worldBorder.lIIlIlIllIIlIIIlIIIlllIII = n;
+        return worldBorder.lIIlIlIllIIlIIIlIIIlllIII;
     }
 
-    public static int lIIIIIIIIIlIllIIllIlIIlIl(WorldBorder iIIlIllIIIlllIIlIIllIlIII, int n) {
-        iIIlIllIIIlllIIlIIllIlIII.IIIlllIIIllIllIlIIIIIIlII = n;
-        return iIIlIllIIIlllIIlIIllIlIII.IIIlllIIIllIllIlIIIIIIlII;
+    public static int lIIIIIIIIIlIllIIllIlIIlIl(WorldBorder worldBorder, int n) {
+        worldBorder.IIIlllIIIllIllIlIIIIIIlII = n;
+        return worldBorder.IIIlllIIIllIllIlIIIIIIlII;
     }
 
-    public static boolean lIIIIIIIIIlIllIIllIlIIlIl(WorldBorder iIIlIllIIIlllIIlIIllIlIII) {
-        return iIIlIllIIIlllIIlIIllIlIII.IlIlllIIIIllIllllIllIIlIl;
+    public static boolean worldBorderIsCanShrinkExpand(WorldBorder worldBorder) {
+        return worldBorder.isCanShrinkExpand;
     }
 
-    public static Color IlllIIIlIlllIllIlIIlllIlI(WorldBorder iIIlIllIIIlllIIlIIllIlIII) {
-        return iIIlIllIIIlllIIlIIllIlIII.IIIIllIlIIIllIlllIlllllIl;
+    public static Color getWorldBorderColor(WorldBorder worldBorder) {
+        return worldBorder.packetColor;
     }
 }

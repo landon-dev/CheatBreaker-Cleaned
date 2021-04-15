@@ -102,7 +102,7 @@ public class OverlayGui extends AbstractGui {
     public void drawMenu(float f, float f2) {
         GL11.glClear(256);
         drawDefaultBackground();
-        //this.lIIIIIIIIIlIllIIllIlIIlIl(this.getScaledWidth(), this.getScaledHeight()); gui blur
+        //this.getBorderList(this.getScaledWidth(), this.getScaledHeight()); gui blur
         Gui.drawRect(0.0f, 0.0f, 140, this.getScaledHeight(), -14671840);
         Gui.drawRect(140, 0.0f, 141, this.getScaledHeight(), -15395563);
         Gui.drawRect(0.0f, 0.0f, 140, 28, -15395563);
