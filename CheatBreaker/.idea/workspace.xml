@@ -8,19 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d14131-306c-4ac7-96db-f9684937fd76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/CheatBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/CheatBreaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/TeammatesModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/TeammatesModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/armourstatus/ArmourStatusModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/armourstatus/ArmourStatusModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/togglesprint/ToggleSprintHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/togglesprint/ToggleSprintHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/VoiceChatGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/VoiceChatGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/teammates/Teammate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/teammates/Teammate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/voicechat/VoiceChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/voicechat/VoiceChannel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/worldborder/WorldBorderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/worldborder/WorldBorderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/AssetsWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/AssetsWebSocket.java" afterDir="false" />
-    </list>
+    <list default="true" id="86d14131-306c-4ac7-96db-f9684937fd76" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
