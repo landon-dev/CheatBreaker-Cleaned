@@ -2,13 +2,17 @@ package com.cheatbreaker.client.module.type.armourstatus;
 
 import com.cheatbreaker.client.config.Setting;
 import com.cheatbreaker.client.event.type.GuiDrawEvent;
+import com.cheatbreaker.client.event.type.RenderPreviewEvent;
 import com.cheatbreaker.client.module.AbstractModule;
 import com.cheatbreaker.client.ui.module.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -61,24 +65,32 @@ public class ArmourStatusModule extends AbstractModule {
         damageColors.add(new ArmourStatusDamageComparable(80, "7"));
         damageColors.add(new ArmourStatusDamageComparable(100, "f"));
         this.setPreviewIcon(new ResourceLocation("client/icons/mods/diamond_chestplate.png"), 34, 34);
-       // this.addEvent(RenderPreviewEvent.class, this::renderPreview);
-        //this.addEvent(GuiDrawEvent.class, this::renderReal);
+        this.addEvent(RenderPreviewEvent.class, this::renderPreview);
+        this.addEvent(GuiDrawEvent.class, this::renderReal);
     }
 
+    /** original method doesn't handle NullPointerException
+     * --> lines ending with "// patch" have been added/patched
+     */
     private void renderPreview(GuiDrawEvent event) {
         if (!this.isRenderHud()) {
             return;
         }
+
+        ArrayList<ArmourStatusItem> defaultItems = new ArrayList<ArmourStatusItem>(); // patch
+        defaultItems.add(new ArmourStatusItem(new ItemStack(Items.diamond_boots), 16, 16, 2, true)); // patch
+        defaultItems.add(new ArmourStatusItem(new ItemStack(Items.diamond_leggings), 16, 16, 2, true)); // patch
+        defaultItems.add(new ArmourStatusItem(new ItemStack(Items.diamond_chestplate), 16, 16, 2, true)); // patch
+        defaultItems.add(new ArmourStatusItem(new ItemStack(Items.diamond_helmet), 16, 16, 2, true)); // patch
+
         ArrayList<ArmourStatusItem> arrayList = new ArrayList<ArmourStatusItem>();
         for (int i = 3; i >= 0; --i) {
             ItemStack armorItemStack = this.minecraft.thePlayer.inventory.armorInventory[i];
-            arrayList.add(new ArmourStatusItem(armorItemStack, 16, 16, 2, true));
-        }
-        if (arrayList.isEmpty()) {
-            arrayList.add(new ArmourStatusItem(new ItemStack(Item.getItemById(310)), 16, 16, 2, true));
-            arrayList.add(new ArmourStatusItem(new ItemStack(Item.getItemById(311)), 16, 16, 2, true));
-            arrayList.add(new ArmourStatusItem(new ItemStack(Item.getItemById(312)), 16, 16, 2, true));
-            arrayList.add(new ArmourStatusItem(new ItemStack(Item.getItemById(313)), 16, 16, 2, true));
+            if (armorItemStack != null) { // patch
+                arrayList.add(new ArmourStatusItem(armorItemStack, 16, 16, 2, true));
+            } else { // patch
+                arrayList.add(defaultItems.get(i)); // patch
+            } // patch
         }
         if ((Boolean) equippedItem.getValue() && this.minecraft.thePlayer.getCurrentEquippedItem() != null) {
             arrayList.add(new ArmourStatusItem(this.minecraft.thePlayer.getCurrentEquippedItem(), 16, 16, 2, false));

@@ -10,21 +10,16 @@
   <component name="ChangeListManager">
     <list default="true" id="86d14131-306c-4ac7-96db-f9684937fd76" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/config/GlobalSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/config/GlobalSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/CheatBreaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/CheatBreaker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/TeammatesModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/TeammatesModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/armourstatus/ArmourStatusModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/armourstatus/ArmourStatusModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/togglesprint/ToggleSprintHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/togglesprint/ToggleSprintHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/module/ModuleListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/module/ModuleListElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/module/ModulesGuiButtonElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/module/ModulesGuiButtonElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/module/CBModulesGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/module/CBModulesGui.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/VoiceChatGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/VoiceChatGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/element/MessagesElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/overlay/element/MessagesElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/hologram/Hologram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/hologram/Hologram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/title/Title.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/title/Title.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/title/TitleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/title/TitleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/server/WSPacketRequestProcessList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/server/WSPacketRequestProcessList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/minecraft/client/renderer/EntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/minecraft/client/renderer/EntityRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/minecraft/client/renderer/RenderGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/minecraft/client/renderer/RenderGlobal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/teammates/Teammate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/teammates/Teammate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/voicechat/VoiceChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/voicechat/VoiceChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/worldborder/WorldBorderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/util/worldborder/WorldBorderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/AssetsWebSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/websocket/AssetsWebSocket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,9 +149,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/module/type/TeammatesModule.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

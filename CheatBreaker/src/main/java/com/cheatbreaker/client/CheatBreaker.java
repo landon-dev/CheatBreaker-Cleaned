@@ -399,26 +399,20 @@ public class CheatBreaker implements SkinManager.SkinAvailableCallback {
     }
 
     public String getStatusString() {
-        String s;
         switch (this.getStatus()) {
             case AWAY: {
-                s = "Away";
-                break;
+                return "Away";
             }
             case BUSY: {
-                s = "Busy";
-                break;
+                return "Busy";
             }
             case HIDDEN: {
-                s = "Hidden";
-                break;
+                return "Hidden";
             }
             default: {
-                s = "Online";
-                break;
+                return "Online";
             }
         }
-        return s;
     }
 
     public void removeCosmeticsFromPlayer(final String playerId) {

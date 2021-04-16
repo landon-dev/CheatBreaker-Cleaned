@@ -111,30 +111,30 @@ public class TeammatesModule {
         GLU.gluProject(x, y, z, this.modelViewMatrixBuffer, this.projectionMatrixBuffer, intBuffer, floatBuffer);
         float f4 = floatBuffer.get(0) / (float)scaledResolution.getScaleFactor();
         float f5 = floatBuffer.get(1) / (float)scaledResolution.getScaleFactor();
-        IlIlIIlllIIIIIlIlIlIIIllI ilIlIIlllIIIIIlIlIlIIIllI = null;
+        IlIlIIlllIIIIIlIlIlIIIllI _unknown = null;
         int n2 = 8;
         int n3 = 10;
         int n4 = -4 - n3;
         float f6 = (float)scaledResolution.getScaledHeight() - f5;
         if (f6 < 0.0f) {
-            ilIlIIlllIIIIIlIlIlIIIllI = IlIlIIlllIIIIIlIlIlIIIllI.lIIIIlIIllIIlIIlIIIlIIllI;
+            _unknown = IlIlIIlllIIIIIlIlIlIIIllI.lIIIIlIIllIIlIIlIIIlIIllI;
             f5 = scaledResolution.getScaledHeight() - 6;
         } else if (f6 > (float)(scaledResolution.getScaledHeight() - n3)) {
-            ilIlIIlllIIIIIlIlIlIIIllI = IlIlIIlllIIIIIlIlIlIIIllI.IlllIIIlIlllIllIlIIlllIlI;
+            _unknown = IlIlIIlllIIIIIlIlIlIIIllI.IlllIIIlIlllIllIlIIlllIlI;
             f5 = 6;
         }
         if (f4 - (float)n2 < 0.0f) {
-            ilIlIIlllIIIIIlIlIlIIIllI = IlIlIIlllIIIIIlIlIlIIIllI.lIIIIIIIIIlIllIIllIlIIlIl;
+            _unknown = IlIlIIlllIIIIIlIlIlIIIllI.lIIIIIIIIIlIllIIllIlIIlIl;
             f4 = 6;
         } else if (f4 > (float)(scaledResolution.getScaledWidth() - n2)) {
-            ilIlIIlllIIIIIlIlIlIIIllI = IlIlIIlllIIIIIlIlIlIIIllI.IIIIllIlIIIllIlllIlllllIl;
+            _unknown = IlIlIIlllIIIIIlIlIlIIIllI.IIIIllIlIIIllIlllIlllllIl;
             f4 = scaledResolution.getScaledWidth() - 6;
         }
         GL11.glPushMatrix();
         GL11.glTranslatef(f4, (float)scaledResolution.getScaledHeight() - f5, 0.0f);
-        if (ilIlIIlllIIIIIlIlIlIIIllI != null) {
+        if (_unknown != null) {
             if (((Boolean) CheatBreaker.getInstance().getGlobalSettings().showOffScreenMarker.getValue())) {
-                this.drawOffscreenMarker(teammate, ilIlIIlllIIIIIlIlIlIIIllI, 0.0f, 0.0f);
+                this.drawOffscreenMarker(teammate, _unknown, 0.0f, 0.0f);
             }
         } else {
             this.drawMarker(teammate, n2, (float)n4, (float)n3);
@@ -150,7 +150,7 @@ public class TeammatesModule {
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        if (teammate.IIIIllIIllIIIIllIllIIIlIl()) {
+        if (teammate.isLeader()) {
             GL11.glColor4f(0.0f, 0.0f, 1.0f, 3.137931f * 0.21032967f);
         } else {
             Color color = teammate.getColor();
@@ -207,7 +207,7 @@ public class TeammatesModule {
         GL11.glEnable(3042);
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        if (teammate.IIIIllIIllIIIIllIllIIIlIl()) {
+        if (teammate.isLeader()) {
             GL11.glColor4f(0.0f, 0.0f, 1.0f, 0.83837837f * 0.78723407f);
         } else {
             Color color = teammate.getColor();

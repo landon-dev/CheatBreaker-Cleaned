@@ -8,13 +8,13 @@ import java.util.UUID;
 
 public class VoiceChannel {
     private final UUID uuid;
-    private final String string;
+    private final String channelName;
     private final List<VoiceUser> voiceUsers = new ArrayList<>();
     private final List<UUID> listeningList = new ArrayList<>();
 
     public VoiceChannel(UUID uuid, String string) {
         this.uuid = uuid;
-        this.string = string;
+        this.channelName = string;
     }
 
     public VoiceUser getOrCreateVoiceUser(UUID uuid, String string) {
@@ -28,7 +28,7 @@ public class VoiceChannel {
         return voiceUser;
     }
 
-    public boolean lIIIIlIIllIIlIIlIIIlIIllI(UUID uUID) {
+    public boolean removePlayer(UUID uUID) {
         return this.voiceUsers.removeIf(voiceUser -> voiceUser.getUUID().equals(uUID));
     }
 
@@ -54,8 +54,8 @@ public class VoiceChannel {
         return this.uuid;
     }
 
-    public String lIIIIIIIIIlIllIIllIlIIlIl() {
-        return this.string;
+    public String getChannelName() {
+        return this.channelName;
     }
 
     public List<VoiceUser> getUsers() {

@@ -360,12 +360,12 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
             }
             case 1: {
                 // Removing player
-                voiceChannel.lIIIIlIIllIIlIIlIIIlIIllI(packet.getUuid());
+                voiceChannel.removePlayer(packet.getUuid());
                 System.out.println("[CB Voice] Packet status 1");
                 break;
             }
             case 2: {
-                System.out.println("[CB Voice] Joined " + voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl() + " channel.");
+                System.out.println("[CB Voice] Joined " + voiceChannel.getChannelName() + " channel.");
                 System.out.println("[CB Voice] " + packet.getUuid() + " - " + Minecraft.getMinecraft().getSession().getPlayerID());
 
                 if (packet.getName().toString().equals(Minecraft.getMinecraft().getSession().getPlayerID())) {
@@ -373,10 +373,10 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
                     for (VoiceChannel voiceChannel2 : this.voiceChannels) {
                         voiceChannel2.removeListener(packet.getUuid());
                     }
-                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + "Joined " + voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().pushToTalk.getKeyCode()) + "' to talk!" + EnumChatFormatting.RESET);
+                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + "Joined " + voiceChannel.getChannelName() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().pushToTalk.getKeyCode()) + "' to talk!" + EnumChatFormatting.RESET);
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().func_146227_a(chatComponentText);
                 } else if (this.voiceChannel == voiceChannel) {
-                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + packet.getName() + EnumChatFormatting.AQUA + " joined " + voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().openVoiceMenu.getKeyCode()) + "'!" + EnumChatFormatting.RESET);
+                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + packet.getName() + EnumChatFormatting.AQUA + " joined " + voiceChannel.getChannelName() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().openVoiceMenu.getKeyCode()) + "'!" + EnumChatFormatting.RESET);
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().func_146227_a(chatComponentText);
                 }
                 voiceChannel.addToListening(packet.getUuid(), packet.getName());
@@ -385,7 +385,7 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
             case 3: {
                 // remove listening
                 if (this.voiceChannel == voiceChannel && !packet.getUuid().toString().equals(Minecraft.getMinecraft().getSession().getPlayerID())) {
-                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + packet.getName() + EnumChatFormatting.AQUA + " left " + voiceChannel.lIIIIIIIIIlIllIIllIlIIlIl() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().openVoiceMenu.getKeyCode()) + "'!" + EnumChatFormatting.RESET);
+                    ChatComponentText chatComponentText = new ChatComponentText(EnumChatFormatting.AQUA + packet.getName() + EnumChatFormatting.AQUA + " left " + voiceChannel.getChannelName() + " channel. Press '" + Keyboard.getKeyName(CheatBreaker.getInstance().getGlobalSettings().openVoiceMenu.getKeyCode()) + "'!" + EnumChatFormatting.RESET);
                     Minecraft.getMinecraft().ingameGUI.getChatGUI().func_146227_a(chatComponentText);
                 }
                 voiceChannel.removeListener(packet.getUuid());
@@ -423,12 +423,12 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
 
     @Override
     public void handleWorldBorderUpdate(PacketWorldBorderUpdate packet) {
-        CheatBreaker.getInstance().getBorderManager().lIIIIlIIllIIlIIlIIIlIIllI(packet.getId(), packet.getMinX(), packet.getMinZ(), packet.getMaxX(), packet.getMaxZ(), packet.getDurationTicks());
+        CheatBreaker.getInstance().getBorderManager().updateWorldBorder(packet.getId(), packet.getMinX(), packet.getMinZ(), packet.getMaxX(), packet.getMaxZ(), packet.getDurationTicks());
     }
 
     @Override
     public void handleWorldBorderRemove(PacketWorldBorderRemove packet) {
-        CheatBreaker.getInstance().getBorderManager().lIIIIlIIllIIlIIlIIIlIIllI(packet.getId());
+        CheatBreaker.getInstance().getBorderManager().removeWorldBorder(packet.getId());
     }
 
     // Util Methods

@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class Teammate {
     private String teammateName;
-    private boolean lIIIIIIIIIlIllIIllIlIIlIl = false;
+    private boolean isLeader = false;
     private Vec3 vector3D;
     private long IIIIllIlIIIllIlllIlllllIl;
     private Color color;
@@ -16,9 +16,9 @@ public class Teammate {
         this.color = color;
     }
 
-    public Teammate(String teammateName, boolean bl) {
+    public Teammate(String teammateName, boolean isLeader) {
         this.teammateName = teammateName;
-        this.lIIIIIIIIIlIllIIllIlIIlIl = bl;
+        this.isLeader = isLeader;
         this.IIIIllIlIIIllIlllIlllllIl = System.currentTimeMillis();
     }
 
@@ -44,8 +44,8 @@ public class Teammate {
         return this.lastMS;
     }
 
-    public boolean IIIIllIIllIIIIllIllIIIlIl() {
-        return this.lIIIIIIIIIlIllIIllIlIIlIl;
+    public boolean isLeader() {
+        return this.isLeader;
     }
 
     public Color getColor() {

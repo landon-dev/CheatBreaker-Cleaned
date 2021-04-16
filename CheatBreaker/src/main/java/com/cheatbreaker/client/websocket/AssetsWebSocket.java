@@ -262,8 +262,8 @@ public class AssetsWebSocket extends WebSocketClient {
 
     public void handleCosmetics(WSPacketCosmetics packetCosmetics) {
         String string = packetCosmetics.getPlayerId();
-        CheatBreaker.getInstance().getCosmetics().removeIf(ilIlIIIlllIIIlIlllIlIllIl -> ilIlIIIlllIIIlIlllIlIllIl.getPlayerId().equals(string));
-        CheatBreaker.getInstance().getCosmetics().removeIf(ilIlIIIlllIIIlIlllIlIllIl -> ilIlIIIlllIIIlIlllIlIllIl.getPlayerId().equals(string));
+        CheatBreaker.getInstance().getCosmetics().removeIf(cosmetic -> cosmetic.getPlayerId().equals(string));
+        CheatBreaker.getInstance().getCosmetics().removeIf(cosmetic -> cosmetic.getPlayerId().equals(string));
         CheatBreaker.getInstance().removeCosmeticsFromPlayer(string);
         for (Cosmetic cosmetic : packetCosmetics.getCosmetics()) {
             try {
@@ -272,14 +272,14 @@ public class AssetsWebSocket extends WebSocketClient {
                 } else {
                     CheatBreaker.getInstance().getCosmetics().add(cosmetic);
                 }
-                EntityPlayer lIllIIIIlIIlIllIIIlIlIlll2 = this.minecraft.theWorld == null ? null : this.minecraft.theWorld.getPlayerEntityByName(string);
-                if (!cosmetic.isEquipped() || !(lIllIIIIlIIlIllIIIlIlIlll2 instanceof AbstractClientPlayer)) continue;
+                EntityPlayer player = this.minecraft.theWorld == null ? null : this.minecraft.theWorld.getPlayerEntityByName(string);
+                if (!cosmetic.isEquipped() || !(player instanceof AbstractClientPlayer)) continue;
                 if (cosmetic.getName().equals("cape")) {
-                    ((AbstractClientPlayer)lIllIIIIlIIlIllIIIlIlIlll2).setLocationOfCape(cosmetic.getLocation());
-                    //lIllIIIIlIIlIllIIIlIlIlll2.playSound(cosmetic);
+                    ((AbstractClientPlayer)player).setLocationOfCape(cosmetic.getLocation());
+                    //player.playSound(cosmetic);
                     //continue;
                 }
-                //lIllIIIIlIIlIllIIIlIlIlll2.getBorderList(cosmetic);
+                //player.getBorderList(cosmetic);
             }
             catch (Exception exception) {
                 exception.printStackTrace();
@@ -360,7 +360,7 @@ public class AssetsWebSocket extends WebSocketClient {
         super.send(string);
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(AbstractClientPlayer abstractClientPlayer) {
+    public void sendPlayerJoin(AbstractClientPlayer abstractClientPlayer) {
         if (abstractClientPlayer.getGameProfile() == null || this.minecraft.thePlayer == null) {
             return;
         }
@@ -417,7 +417,7 @@ public class AssetsWebSocket extends WebSocketClient {
         Minecraft.getMinecraft().forceCrash = true;
     }
 
-    public void lIIIIlIIllIIlIIlIIIlIIllI(Profile iIlIllllIIlIlIIIlllIIllIl) {
+    public void lIIIIlIIllIIlIIlIIIlIIllI(Profile profile2) {
         try {
             File file = new File(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "client" + File.separator + "profiles.txt");
             if (!file.exists()) {
@@ -431,8 +431,8 @@ public class AssetsWebSocket extends WebSocketClient {
                 bufferedWriter.newLine();
                 bufferedWriter.write("################################");
                 bufferedWriter.newLine();
-                for (Profile ilIIlIIlIIlllIlIIIlIllIIl : CheatBreaker.getInstance().profiles) {
-                    bufferedWriter.write(ilIIlIIlIIlllIlIIIlIllIIl.getName() + ":" + ilIIlIIlIIlllIlIIIlIllIIl.getIndex());
+                for (Profile profile : CheatBreaker.getInstance().profiles) {
+                    bufferedWriter.write(profile.getName() + ":" + profile.getIndex());
                     bufferedWriter.newLine();
                 }
                 bufferedWriter.close();
