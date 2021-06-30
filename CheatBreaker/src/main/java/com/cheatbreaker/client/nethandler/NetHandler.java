@@ -49,7 +49,7 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
     private boolean serverHandlesWaypoints = false;
     public boolean voiceChatEnabled = true;
     private boolean competitiveGamemode = false;
-    private boolean lIIIIIIIIIlIllIIllIlIIlIl = false;
+    private boolean isCheatBreakerPlayer = false;
 
     @Getter
     private Map<UUID, List<String>> nametagsMap = new HashMap<>();
@@ -98,11 +98,11 @@ public class NetHandler implements ICBNetHandler, ICBNetHandlerClient {
         try {
             if (pluginMessageEvent.getChannel().equals("REGISTER")) {
                 String string = new String(pluginMessageEvent.getPayload(), Charsets.UTF_8);
-                this.lIIIIIIIIIlIllIIllIlIIlIl = string.contains(CheatBreaker.getInstance().clientString());
+                this.isCheatBreakerPlayer = string.contains(CheatBreaker.getInstance().clientString());
                 this.serverHandlesWaypoints = string.contains(CheatBreaker.getInstance().binaryString());
                 PacketBuffer packetBuffer = new PacketBuffer(Unpooled.buffer());
                 packetBuffer.writeBytes(CheatBreaker.getInstance().clientString().getBytes(Charsets.UTF_8));
-                if (Minecraft.getMinecraft().getNetHandler() != null && this.lIIIIIIIIIlIllIIllIlIIlIl) {
+                if (Minecraft.getMinecraft().getNetHandler() != null && this.isCheatBreakerPlayer) {
                     Minecraft.getMinecraft().getNetHandler().addToSendQueue(new C17PacketCustomPayload("REGISTER", packetBuffer));
                 }
                 this.initialize();

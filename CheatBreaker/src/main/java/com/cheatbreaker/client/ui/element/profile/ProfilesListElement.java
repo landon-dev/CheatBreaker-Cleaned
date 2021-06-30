@@ -19,13 +19,13 @@ import org.lwjgl.opengl.GL11;
 
 public class ProfilesListElement extends AbstractScrollableElement {
     private final int IIIlllIIIllIllIlIIIIIIlII;
-    public final List<ProfileElement> lIIIIlIIllIIlIIlIIIlIIllI;
+    public final List<ProfileElement> profileElements;
     private final ResourceLocation plusIcon = new ResourceLocation("client/icons/plus-64.png");
 
     public ProfilesListElement(float f, int n, int n2, int n3, int n4) {
         super(f, n, n2, n3, n4);
         this.IIIlllIIIllIllIlIIIIIIlII = -12418828;
-        this.lIIIIlIIllIIlIIlIIIlIIllI = new ArrayList<>();
+        this.profileElements = new ArrayList<>();
         this.lIIIIIIIIIlIllIIllIlIIlIl();
     }
 
@@ -36,8 +36,8 @@ public class ProfilesListElement extends AbstractScrollableElement {
         RenderUtil.lIIIIlIIllIIlIIlIIIlIIllI((double)this.x, (double)this.y, (double)(this.x + this.width), (double)(this.y + this.height + 2), (double)8, -657931);
         this.preDraw(mouseX, mouseY);
         this.IlllIllIlIIIIlIIlIIllIIIl = 15;
-        for (n3 = 0; n3 < this.lIIIIlIIllIIlIIlIIIlIIllI.size(); ++n3) {
-            object = this.lIIIIlIIllIIlIIlIIIlIIllI.get(n3);
+        for (n3 = 0; n3 < this.profileElements.size(); ++n3) {
+            object = this.profileElements.get(n3);
             ((AbstractModulesGuiElement)object).setDimensions(this.x + 4, this.y + 4 + n3 * 18, this.width - 12, 18);
             ((ProfileElement)object).yOffset = this.lIIIIllIIlIlIllIIIlIllIlI;
             ((ProfileElement)object).handleDrawElement(mouseX, mouseY, partialTicks);
@@ -54,9 +54,9 @@ public class ProfilesListElement extends AbstractScrollableElement {
 
     @Override
     public void handleMouseClick(int mouseX, int mouseY, int button) {
-        for (ProfileElement iIlIlllllIIIlIIllIllIlIlI : this.lIIIIlIIllIIlIIlIIIlIIllI) {
-            if (!iIlIlllllIIIlIIllIllIlIlI.isMouseInside(mouseX, mouseY)) continue;
-            iIlIlllllIIIlIIllIllIlIlI.handleMouseClick(mouseX, mouseY, button);
+        for (ProfileElement element : this.profileElements) {
+            if (!element.isMouseInside(mouseX, mouseY)) continue;
+            element.handleMouseClick(mouseX, mouseY, button);
             return;
         }
         boolean bl = (float) mouseX > (float) (this.x + this.width - 92) * this.scale && (float) mouseX < (float) (this.x + this.width - 6) * this.scale && (float) mouseY > (float) (this.y + this.IlllIllIlIIIIlIIlIIllIIIl - 20 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale && (float) mouseY < (float) (this.y + this.IlllIllIlIIIIlIIlIIllIIIl - 7 + this.lIIIIllIIlIlIllIIIlIllIlI) * this.scale;
@@ -77,7 +77,7 @@ public class ProfilesListElement extends AbstractScrollableElement {
 
     public void lIIIIIIIIIlIllIIllIlIIlIl() {
         new Thread(() -> {
-            this.lIIIIlIIllIIlIIlIIIlIIllI.clear();
+            this.profileElements.clear();
             File file = new File(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "client" + File.separator + "profiles");
             if (file.exists()) {
                 for (File file2 : file.listFiles()) {
@@ -92,9 +92,9 @@ public class ProfilesListElement extends AbstractScrollableElement {
                 }
             }
             for (Profile ilIIlIIlIIlllIlIIIlIllIIl : CheatBreaker.getInstance().profiles) {
-                this.lIIIIlIIllIIlIIlIIIlIIllI.add(new ProfileElement(this, this.IIIlllIIIllIllIlIIIIIIlII, ilIIlIIlIIlllIlIIIlIllIIl, this.scale));
+                this.profileElements.add(new ProfileElement(this, this.IIIlllIIIllIllIlIIIIIIlII, ilIIlIIlIIlllIlIIIlIllIIl, this.scale));
             }
-            this.lIIIIlIIllIIlIIlIIIlIIllI.sort((iIlIlllllIIIlIIllIllIlIlI, iIlIlllllIIIlIIllIllIlIlI2) -> {
+            this.profileElements.sort((iIlIlllllIIIlIIllIllIlIlI, iIlIlllllIIIlIIllIllIlIlI2) -> {
                 if (iIlIlllllIIIlIIllIllIlIlI.profile.getName().equalsIgnoreCase("default")) {
                     return 0;
                 }

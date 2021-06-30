@@ -8,7 +8,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86d14131-306c-4ac7-96db-f9684937fd76" name="Default Changelist" comment="" />
+    <list default="true" id="86d14131-306c-4ac7-96db-f9684937fd76" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/profile/ProfileElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/profile/ProfileElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/profile/ProfilesListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/element/profile/ProfilesListElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/AccountList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/AccountList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/MainMenuBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/mainmenu/MainMenuBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/module/CBProfileCreateGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/ui/module/CBProfileCreateGui.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +43,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -84,7 +93,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Start" />
       <module name="cheatbreaker-client" />
-      <option name="PROGRAM_PARAMETERS" value="--username JMRaichDev" />
+      <option name="PROGRAM_PARAMETERS" value="--username Steve" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=./natives/ -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5010 -XX:+UnlockExperimentalVMOptions" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -134,14 +143,10 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/cheatbreaker/client/nethandler/NetHandler.java</url>
-          <line>100</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.google.gson.internal.LinkedTreeMap$Node" memberName="value" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

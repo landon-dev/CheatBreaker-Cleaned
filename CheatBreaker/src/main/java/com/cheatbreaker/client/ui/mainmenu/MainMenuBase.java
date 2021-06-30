@@ -73,28 +73,31 @@ public class MainMenuBase extends AbstractGui {
                 final Set<Map.Entry<String, JsonElement>> accounts = object.getAsJsonObject("accounts").entrySet();
                 for (Map.Entry<String, JsonElement> accountElement : accounts) {
                     JsonObject account = accountElement.getValue().getAsJsonObject();
-                    //String accessToken = account.get("accessToken").getAsString();
-                    String accessToken = "null";
+                    String accessToken = account.get("accessToken").getAsString();
                     JsonObject minecraftProfileObject = account.getAsJsonObject("minecraftProfile");
-                    String uuid = minecraftProfileObject.get("id").getAsString();
-                    String displayName = minecraftProfileObject.get("name").getAsString();
-                    String clientToken = object.get("mojangClientToken").getAsString();
-                    String userName = account.get("username").toString();
-                    if (userName != null){
-                        Account finalAccount = new Account(userName, clientToken,accessToken, displayName, uuid);
-                        accountsList.add(finalAccount);
-                        System.out.println("[CB] added account " + finalAccount.getUsername() + ".");
-                        float f = CheatBreaker.getInstance().robotoRegular13px.getStringWidth(finalAccount.getDisplayName());
-                        if (f > this.accountButtonWidth) {
-                            this.accountButtonWidth = f;
+                    if (minecraftProfileObject != null) {
+                        String uuid = minecraftProfileObject.get("id").getAsString();
+                        String displayName = minecraftProfileObject.get("name").getAsString();
+                        String clientToken = object.get("mojangClientToken").getAsString();
+                        String userName = account.get("username").toString();
+                        if (userName != null) {
+                            Account finalAccount = new Account(userName, clientToken, accessToken, displayName, uuid);
+                            accountsList.add(finalAccount);
+                            System.out.println("[CB] added account " + finalAccount.getUsername() + ".");
+                            float f = CheatBreaker.getInstance().robotoRegular13px.getStringWidth(finalAccount.getDisplayName());
+                            if (f > this.accountButtonWidth) {
+                                this.accountButtonWidth = f;
+                            }
+                            if (minecraft.getSession() == null || !finalAccount.getUsername().equalsIgnoreCase(minecraft.getSession().getUsername()))
+                                continue;
+                            this.accountList.setUsername(finalAccount.getDisplayName());
+                            this.accountList.setHeadResourceLocation(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
+                            this.updateAccountButtonSize();
+                        } else {
+                            System.err.println("[CB] userName is null.");
                         }
-                        if (minecraft.getSession() == null || !finalAccount.getUsername().equalsIgnoreCase(minecraft.getSession().getUsername()))
-                            continue;
-                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(finalAccount.getDisplayName());
-                        this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(CheatBreaker.getInstance().getHeadLocation(finalAccount.getDisplayName(), finalAccount.getDisplayName()));
-                        this.updateAccountButtonSize();
                     } else {
-                        System.err.println("[CB] userName is null.");
+                        new NullPointerException("MC Profile Object is null").printStackTrace();
                     }
                 }
             } catch (IOException exception) {
@@ -353,8 +356,8 @@ public class MainMenuBase extends AbstractGui {
                     if (!object2.func_148256_e().getId().toString().replaceAll("-", "").equalsIgnoreCase(selectedAccount.getUUID().replaceAll("-", "")))
                         continue;
                     Minecraft.getMinecraft().setSession(object2);
-                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                    this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                    this.accountList.setUsername(selectedAccount.getDisplayName());
+                    this.accountList.setHeadResourceLocation(selectedAccount.getHeadLocation());
                     this.updateAccountButtonSize();
                     return;
                 }
@@ -374,8 +377,8 @@ public class MainMenuBase extends AbstractGui {
                     return;
                 }
                 System.out.println("Updated accessToken and logged user in.");
-                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getDisplayName());
-                this.accountList.lIIIIlIIllIIlIIlIIIlIIllI(selectedAccount.getHeadLocation());
+                this.accountList.setUsername(selectedAccount.getDisplayName());
+                this.accountList.setHeadResourceLocation(selectedAccount.getHeadLocation());
                 this.updateAccountButtonSize();
                 CheatBreaker.getInstance().sessions.add(session);
                 Minecraft.getMinecraft().setSession(session);

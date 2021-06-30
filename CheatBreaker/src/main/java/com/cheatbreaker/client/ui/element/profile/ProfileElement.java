@@ -66,7 +66,7 @@ public class ProfileElement
             bl2 = false;
             bl = false;
             ProfilesListElement parent = (ProfilesListElement)this.parent;
-            if (parent.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) != 0 && parent.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) > 1) {
+            if (parent.profileElements.indexOf(this) != 0 && parent.profileElements.indexOf(this) > 1) {
                 bl2 = true;
                 GL11.glPushMatrix();
                 if (bl4) {
@@ -78,7 +78,7 @@ public class ProfileElement
                 GL11.glPopMatrix();
                 GL11.glColor4f(0.0f, 0.0f, 0.0f, 1.0952381f * 0.3195652f);
             }
-            if (parent.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) != parent.lIIIIlIIllIIlIIlIIIlIIllI.size() - 1) {
+            if (parent.profileElements.indexOf(this) != parent.profileElements.size() - 1) {
                 bl = true;
                 GL11.glPushMatrix();
                 if (bl5) {
@@ -121,17 +121,17 @@ public class ProfileElement
         boolean bl4 = (float) mouseX > (float)this.x * this.scale && (float) mouseX < (float)(this.x + 12) * this.scale && (float) mouseY > (float)(this.y + this.height / 2 + this.yOffset) * this.scale && (float) mouseY < (float)(this.y + this.height + this.yOffset) * this.scale;
         ProfilesListElement iIlIlIlllIllIIlIllIIlIIlI = (ProfilesListElement)this.parent;
         if (this.profile.isEditable() && (bl3 || bl4)) {
-            if (bl3 && ((ProfilesListElement)this.parent).lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) != 0 && ((ProfilesListElement)this.parent).lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) > 1) {
+            if (bl3 && ((ProfilesListElement)this.parent).profileElements.indexOf(this) != 0 && ((ProfilesListElement)this.parent).profileElements.indexOf(this) > 1) {
                 Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
-                this.profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) - 1);
-                iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.get((int)(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf((Object)this) - 1)).profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this));
-                Collections.swap(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI, iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this), iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) - 1);
+                this.profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this) - 1);
+                iIlIlIlllIllIIlIllIIlIIlI.profileElements.get((int)(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf((Object)this) - 1)).profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this));
+                Collections.swap(iIlIlIlllIllIIlIllIIlIIlI.profileElements, iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this), iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this) - 1);
             }
-            if (bl4 && iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) != iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.size() - 1) {
+            if (bl4 && iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this) != iIlIlIlllIllIIlIllIIlIIlI.profileElements.size() - 1) {
                 Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
-                this.profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) + 1);
-                iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.get((int)(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf((Object)this) + 1)).profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this));
-                Collections.swap(iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI, iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this), iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.indexOf(this) + 1);
+                this.profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this) + 1);
+                iIlIlIlllIllIIlIllIIlIIlI.profileElements.get((int)(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf((Object)this) + 1)).profile.setIndex(iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this));
+                Collections.swap(iIlIlIlllIllIIlIllIIlIIlI.profileElements, iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this), iIlIlIlllIllIIlIllIIlIIlI.profileElements.indexOf(this) + 1);
             }
         } else if (this.profile.isEditable() && bl) {
             File file;
@@ -144,7 +144,7 @@ public class ProfileElement
             }
             if (this.profile.isEditable() && (file2 = (file = new File(Minecraft.getMinecraft().mcDataDir + File.separator + "config" + File.separator + "client" + File.separator + "profiles")).exists() || file.mkdirs() ? new File(file + File.separator + this.profile.getName().toLowerCase() + ".cfg") : null).exists() && file2.delete()) {
                 CheatBreaker.getInstance().profiles.removeIf(ilIIlIIlIIlllIlIIIlIllIIl -> ilIIlIIlIIlllIlIIIlIllIIl == this.profile);
-                iIlIlIlllIllIIlIllIIlIIlI.lIIIIlIIllIIlIIlIIIlIIllI.removeIf(iIlIlllllIIIlIIllIllIlIlI -> iIlIlllllIIIlIIllIllIlIlI == this);
+                iIlIlIlllIllIIlIllIIlIIlI.profileElements.removeIf(iIlIlllllIIIlIIllIllIlIlI -> iIlIlllllIIIlIIllIllIlIlI == this);
             }
         } else if (this.profile.isEditable() && bl2) {
             Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));

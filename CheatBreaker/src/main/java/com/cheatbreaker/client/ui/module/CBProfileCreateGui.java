@@ -141,7 +141,7 @@ public class CBProfileCreateGui
                     Profile ilIIlIIlIIlllIlIIIlIllIIl3 = new Profile(this.lIIIIIIIIIlIllIIllIlIIlIl.getText(), true);
                     CheatBreaker.getInstance().profiles.add(ilIIlIIlIIlllIlIIIlIllIIl3);
                     CheatBreaker.getInstance().activeProfile = ilIIlIIlIIlllIlIIIlIllIIl3;
-                    this.parent.lIIIIlIIllIIlIIlIIIlIIllI.add(new ProfileElement(this.parent, this.IIIIllIlIIIllIlllIlllllIl, ilIIlIIlIIlllIlIIIlIllIIl3, this.IlllIIIlIlllIllIlIIlllIlI));
+                    this.parent.profileElements.add(new ProfileElement(this.parent, this.IIIIllIlIIIllIlllIlllllIl, ilIIlIIlIIlllIlIIIlIllIIl3, this.IlllIIIlIlllIllIlIIlllIlI));
                     CheatBreaker.getInstance().configManager.writeProfile(CheatBreaker.getInstance().activeProfile.getName());
                     this.mc.displayGuiScreen(this.guiScreen);
                     ((CBModulesGui) this.guiScreen).currentScrollableElement = ((CBModulesGui) this.guiScreen).profilesElement;
